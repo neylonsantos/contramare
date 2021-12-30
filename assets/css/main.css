@@ -35,6 +35,10 @@
   .main .lastPublications .card {
     width: 100%;
   }
+
+  .main .lastPublications{
+    margin-top: 100px;
+  }
 }
 
 .main .lastPublications .card .card-title {

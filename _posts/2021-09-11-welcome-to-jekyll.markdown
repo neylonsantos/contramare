@@ -3,7 +3,7 @@ layout: post
 title: "De onde viemos e para onde vamos?"
 date: 2021-09-11 16:14:39 -0300
 categories: jekyll
-# description: Uma descrição qualquer.
+description: Uma descrição qualquer.
 ---
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
