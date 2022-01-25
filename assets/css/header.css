@@ -22,14 +22,14 @@ hr {
 
 .menuBtn {
   display: none;
-  background-color: #2789ce;
-  color: white;
+  background-color: transparent;
+  color: #2789ce;
   border: none;
-  border-radius: 5px;
+  padding: 0px;
 }
 
 .menuBtn i {
-  font-size: 20px;
+  font-size: 50px;
 }
 
 @media(max-width: 395px){
@@ -40,9 +40,9 @@ hr {
 
   .menuBtn {
     display: block;
-    position: absolute;
-    left: 87%;
-    top: 26px;
+    /* position: absolute; */
+    /* left: 87%; */
+    /* top: 26px; */
   }
 }
 
