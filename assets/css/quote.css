@@ -1,0 +1,24 @@
+.bodyQuote, html{
+  height: 100%;
+}
+
+.quoteBlock {
+  height: 100%;
+}
+
+.quoteContent {
+  height: 75%;
+}
+
+.imgQuote img {
+  width: 60%;
+  margin-bottom: 30px;
+}
+
+.socialIconsQuote a p i {
+  color: black;
+}
+
+.socialIconsQuote a p i:hover {
+  color: #2789ce;
+}

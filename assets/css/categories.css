@@ -1,0 +1,55 @@
+.category .categoryPublications {
+  margin-top: 250px;
+}
+
+.category .categoryPublications .card {
+  width: 75%;
+  border: none;
+}
+
+@media(max-width: 768px){
+  .category .categoryPublications .card {
+    width: 100%;
+  }
+}
+
+.category .categoryPublications{
+  margin-top: 100px;
+}
+
+.category .categoryPublications .card .card-title {
+  color: #2789ce;
+}
+
+.category .categoryPublications .card .card-title:hover {
+  color: #69c6ffff;
+}
+
+.category .categoryPublications .card a {
+  text-decoration: none;
+}
+
+.category .categoryPublications .card .card-body {
+  padding: 0px;
+}
+
+.category .categoryPublications .card .category {
+  color: darkgray;
+}
+
+.category .categoryPublications .morePostsBtn {
+  border: 1px solid #2789ce;
+  border-radius: 5px;
+  padding: 10px 20px 10px 20px;
+  background: none;
+  color: #2789ce;
+  text-decoration: none;
+}
+
+.category .categoryPublications .morePostsBtn:hover {
+  border-radius: 5px;
+  padding: 10px 20px 10px 20px;
+  background: #2789ce;
+  color: #fff;
+  transition: 1s;
+}
