@@ -25,6 +25,20 @@
   color: #69c6ffff;
 }
 
+@media(max-width: 660px){
+  .category .categoryPublications .card .card-title {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+@media(max-width: 660px){
+  .category .categoryPublications .card .card-body div {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
 .category .categoryPublications .card a {
   text-decoration: none;
 }
@@ -35,21 +49,4 @@
 
 .category .categoryPublications .card .category {
   color: darkgray;
-}
-
-.category .categoryPublications .morePostsBtn {
-  border: 1px solid #2789ce;
-  border-radius: 5px;
-  padding: 10px 20px 10px 20px;
-  background: none;
-  color: #2789ce;
-  text-decoration: none;
-}
-
-.category .categoryPublications .morePostsBtn:hover {
-  border-radius: 5px;
-  padding: 10px 20px 10px 20px;
-  background: #2789ce;
-  color: #fff;
-  transition: 1s;
 }
