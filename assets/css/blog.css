@@ -5,14 +5,14 @@
   object-position: center;
 }
 
-.main .allPublications .card .card-title {
+.allPublications .card .card-title {
   color: #2789ce;
 }
 
-.main .allPublications .card .card-title:hover {
+.allPublications .card .card-title:hover {
   color: #69c6ffff;
 }
 
-.main .allPublications .card a {
+.allPublications .card .card-body a {
   text-decoration: none;
 }
