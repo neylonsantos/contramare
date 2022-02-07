@@ -32,7 +32,7 @@ hr {
   font-size: 50px;
 }
 
-@media(max-width: 395px){
+@media(max-width: 500px){
   .menu .nav{
     display: none;
     flex-direction: column;
