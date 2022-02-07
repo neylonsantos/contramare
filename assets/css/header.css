@@ -52,3 +52,18 @@ hr {
   align-items: center;
   transition: all .3s;
 }
+
+/* scrollbar modification */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2789ce;
+  border-radius: 100px;
+}
