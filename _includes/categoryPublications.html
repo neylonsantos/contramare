@@ -6,7 +6,7 @@
   {% for post in site.categories[page.tag] %}
   <div class="card">
     <div class="card-body">
-      <a href="{{ post.url }}"> <h5 class="card-title text-center"> {{ post.quote }}</h5> </a>
+      <a href="{{ post.url | prepend: site.baseurl }}"> <h5 class="card-title text-center"> {{ post.quote }}</h5> </a>
       <div class="d-flex justify-content-between">
         <p class="category"> {{ post.categories }} </p>
         <p class="card-text mb-2 text-end"> - {{ post.quote_author }}</p>
