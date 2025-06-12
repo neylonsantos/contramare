@@ -1,17 +1,15 @@
-/* header */
-
 header {
-  /* background-color: #edf2fb; */
   font-family: 'Comfortaa';
   font-weight: 600;
 }
 
-.masterHeader ul li a {
+.master-header ul li a {
   color: #2789ce;
 }
 
-.masterHeader ul li a:hover {
+.master-header ul li a:hover {
   text-decoration: none;
+  color: #69c6ffff;
 }
 
 hr {
@@ -20,29 +18,143 @@ hr {
   background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 
-.menuBtn {
+.menu-btn {
   display: none;
   background-color: transparent;
-  color: #2789ce;
   border: none;
-  padding: 0px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  position: relative;
+  padding: 4px;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
 }
 
-.menuBtn i {
+.menu-btn i {
+  /* font-size: 20px; */
+  color: #2789ce;
+  position: absolute;
+  transition: opacity 0.3s ease;
+}
+
+/* Estado normal: mostra seta para baixo */
+.menu-icon-down {
+  display: block;
   font-size: 50px;
+  opacity: 1;
+  animation: subtleBounce 2s ease-in-out infinite;
+}
+
+.menu-icon-close {
+  display: block;
+  font-size: 20px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Estado ativo: mostra X */
+.menu-btn.active .menu-icon-down {
+  opacity: 0;
+  pointer-events: none;
+  animation: none;
+}
+
+.menu-btn.active .menu-icon-close {
+  display: block;
+  color: #69c6ffff;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Animação de bounce sutil */
+@keyframes subtleBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-3px);
+  }
+  60% {
+    transform: translateY(-1px);
+  }
 }
 
 @media(max-width: 500px){
   .menu .nav{
     display: none;
     flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    padding: 80px 20px 40px;
+    margin: 0;
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  .menuBtn {
+  .menu .nav.show {
+    display: flex;
+    transform: translateY(0);
+  }
+
+  .menu .nav li {
+    margin: 0 0 24px 0;
+    padding: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+
+  .menu .nav.show li:nth-child(1) { animation-delay: 0.1s; }
+  .menu .nav.show li:nth-child(2) { animation-delay: 0.2s; }
+  .menu .nav.show li:nth-child(3) { animation-delay: 0.3s; }
+  .menu .nav.show li:nth-child(4) { animation-delay: 0.4s; }
+  .menu .nav.show li:nth-child(5) { animation-delay: 0.5s; }
+
+  .menu .nav li a {
     display: block;
-    /* position: absolute; */
-    /* left: 87%; */
-    /* top: 26px; */
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2789ce;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    text-decoration: none;
+  }
+
+  .menu .nav li a:hover {
+    background-color: rgba(39, 137, 206, 0.1);
+    color: #69c6ffff;
+    transform: scale(1.05);
+  }
+
+  .menu {
+    position: relative;
+  }
+
+  .menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10000;
+  }
+
+  /* Animações */
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 

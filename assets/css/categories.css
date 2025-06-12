@@ -1,52 +1,52 @@
-.category .categoryPublications {
+.category .category-publications {
   margin-top: 250px;
 }
 
-.category .categoryPublications .card {
+.category .category-publications .card {
   width: 75%;
   border: none;
 }
 
 @media(max-width: 768px){
-  .category .categoryPublications .card {
+  .category .category-publications .card {
     width: 100%;
   }
 }
 
-.category .categoryPublications{
+.category .category-publications{
   margin-top: 100px;
 }
 
-.category .categoryPublications .card .card-title {
+.category .category-publications .card .card-title {
   color: #2789ce;
 }
 
-.category .categoryPublications .card .card-title:hover {
+.category .category-publications .card .card-title:hover {
   color: #69c6ffff;
 }
 
 @media(max-width: 660px){
-  .category .categoryPublications .card .card-title {
+  .category .category-publications .card .card-title {
     padding-right: 10px;
     padding-left: 10px;
   }
 }
 
 @media(max-width: 660px){
-  .category .categoryPublications .card .card-body div {
+  .category .category-publications .card .card-body div {
     padding-right: 10px;
     padding-left: 10px;
   }
 }
 
-.category .categoryPublications .card a {
+.category .category-publications .card a {
   text-decoration: none;
 }
 
-.category .categoryPublications .card .card-body {
+.category .category-publications .card .card-body {
   padding: 0px;
 }
 
-.category .categoryPublications .card .category {
+.category .category-publications .card .category {
   color: darkgray;
 }

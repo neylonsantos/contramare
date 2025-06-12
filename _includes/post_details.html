@@ -1,0 +1,29 @@
+<article class="post-header">
+  <header class="d-flex flex-column mt-5 mb-5">
+    <div class="post-header-image">
+      <a href="{{ site.baseurl }}/">
+        <img src="/assets/base/contramare-icon.png" alt="Contramaré" class="article-image">
+      </a>
+    </div>
+    <h1 class="post-title mb-0">{{ page.title }}</h1>
+    <p class="post-description mt-2 mb-1 pl-5">{{ page.description }}</p>
+    <div class="post-meta">
+      <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">
+        <i class="bi bi-clock"></i>
+        {{ page.date | date: "%d de %b de %Y" }}
+      </time>
+      <span class="reading-time">
+        <i class="bi bi-book"></i>
+        {% assign words = content | strip_html | number_of_words %}
+        {% assign reading_time = words | divided_by: 200 | plus: 1 %}
+        {{ reading_time }} min de leitura
+      </span>
+    </div>
+  </header>
+
+  {% if page.image %}
+  <div class="post-featured-image">
+    <img src="{{ page.image | prepend: site.baseurl }}" alt="{{ page.title }}" loading="lazy">
+  </div>
+  {% endif %}
+</article>

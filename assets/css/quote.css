@@ -1,24 +1,24 @@
-.bodyQuote, html{
+.body-quote, html{
   height: 100%;
 }
 
-.quoteBlock {
+.quote-block {
   height: 100%;
 }
 
-.quoteContent {
+.quote-content {
   height: 75%;
 }
 
-.imgQuote img {
+.img-quote img {
   width: 60%;
   margin-bottom: 30px;
 }
 
-.socialIconsQuote a p i {
+.social-icons-quote a p i {
   color: black;
 }
 
-.socialIconsQuote a p i:hover {
+.social-icons-quote a p i:hover {
   color: #2789ce;
 }
