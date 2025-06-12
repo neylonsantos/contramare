@@ -4,7 +4,7 @@ name: Deploy Jekyll para Servidor
 # Gatilhos que iniciam o workflow
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   workflow_dispatch:
 
 jobs:
