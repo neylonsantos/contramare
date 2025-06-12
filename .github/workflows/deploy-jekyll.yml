@@ -62,8 +62,8 @@ jobs:
           script: |
             set -e  # Para em caso de erro
 
-            TARGET_DIR="/contramare_com_br"
-            BACKUP_DIR="${TARGET_DIR}_backup_$(date +%Y%m%d_%H%M%S)"
+            TARGET_DIR="/home/neylon/contramare_com_br"
+            BACKUP_DIR="/home/neylon/contramare_com_br_backup_$(date +%Y%m%d_%H%M%S)"
 
             echo "🚀 Iniciando deploy em ${TARGET_DIR}..."
 
@@ -112,7 +112,7 @@ jobs:
 
             # Mantém apenas os 5 backups mais recentes
             echo "🗂️ Limpando backups antigos..."
-            ls -dt /contramare_com_br_backup_* 2>/dev/null | tail -n +6 | xargs rm -rf
+            ls -dt /home/neylon/contramare_com_br_backup_* 2>/dev/null | tail -n +6 | xargs rm -rf
 
             echo "✅ Deploy concluído com sucesso!"
             echo "📊 Conteúdo atual:"
