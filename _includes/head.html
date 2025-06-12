@@ -1,32 +1,153 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="{{ site.lang | default: 'pt-BR' }}">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="{{ "/assets/base/contramare-icon-light.svg" | prepend: site.baseurl }}" sizes="32x32" type="image/png">
-  <title>{{ site.title }}</title>
 
-  <meta name="author" content="Neylon Santos">
-  <meta name="robots" content="noodp">
-	<meta name="reply-to" content=" {{ site.email }}">
+  <!-- Preload critical resources -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" as="style">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <!-- Favicon and App Icons -->
+  <link rel="icon" href="{{ "/assets/base/contramare-icon.png" | prepend: site.baseurl }}" type="image/png">
+  <link rel="apple-touch-icon" href="{{ "/assets/base/contramare-icon.png" | prepend: site.baseurl }}">
+  <meta name="theme-color" content="#2c3e50">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
+
+  <!-- SEO Plugin (jekyll-seo-tag) -->
+  {% seo %}
+
+  <!-- Additional SEO Meta Tags -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="reply-to" content="{{ site.email }}">
+  <meta name="language" content="{{ site.lang | default: 'pt-BR' }}">
+
+  <!-- Geographic targeting -->
+  <meta name="geo.region" content="BR">
+  <meta name="geo.country" content="Brazil">
+
+  <!-- Article specific meta tags -->
+  {% if page.layout == 'post' %}
+    <meta property="article:author" content="{{ site.author }}">
+    <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+    <meta property="article:section" content="{{ page.categories | first }}">
+    {% for tag in page.tags %}
+      <meta property="article:tag" content="{{ tag }}">
+    {% endfor %}
+  {% endif %}
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "{% if page.layout == 'post' %}BlogPosting{% else %}WebSite{% endif %}",
+    {% if page.layout == 'post' %}
+    "headline": "{{ page.title }}",
+    "description": "{% if page.description %}{{ page.description }}{% else %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% endif %}",
+    "author": {
+      "@type": "Person",
+      "name": "{{ site.author }}",
+      "url": "{{ site.url }}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{ site.title }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ "/assets/base/contramare-icon.png" | prepend: site.baseurl | prepend: site.url }}"
+      }
+    },
+    "datePublished": "{{ page.date | date_to_xmlschema }}",
+    "dateModified": "{{ page.date | date_to_xmlschema }}",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ page.url | prepend: site.baseurl | prepend: site.url }}"
+    },
+    {% if page.image %}
+    "image": {
+      "@type": "ImageObject",
+      "url": "{{ page.image | prepend: site.baseurl | prepend: site.url }}",
+      "width": 1200,
+      "height": 630
+    },
+    {% endif %}
+    "articleSection": "{{ page.categories | first }}",
+    "wordCount": "{{ page.content | number_of_words }}"
+    {% else %}
+    "name": "{{ site.title }}",
+    "description": "{{ site.description }}",
+    "url": "{{ site.url }}",
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{ site.title }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ "/assets/base/contramare-icon.png" | prepend: site.baseurl | prepend: site.url }}"
+      }
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "{{ site.url }}/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+    {% endif %}
+  }
+  </script>
 
   <!-- BOOTSTRAP -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js" integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D" crossorigin="anonymous"></script>
 
   <!-- Fonts & Icons -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <!--MY FILES -->
+  <!-- MY FILES -->
   <script src="{{ "/assets/js/addons.js" | prepend: site.baseurl }}"></script>
-  <link rel="stylesheet" href="{{ "/assets/css/post.css" | prepend: site.baseurl }}">
+
+  <!-- CSS GLOBAL (sempre necessário) -->
   <link rel="stylesheet" href="{{ "/assets/css/header.css" | prepend: site.baseurl }}">
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | prepend: site.baseurl }}">
   <link rel="stylesheet" href="{{ "/assets/css/footer.css" | prepend: site.baseurl }}">
-  <link rel="stylesheet" href="{{ "/assets/css/categories.css" | prepend: site.baseurl }}">
-  <link rel="stylesheet" href="{{ "/assets/css/quote.css" | prepend: site.baseurl }}">
+
+  <!-- CSS CONDICIONAL baseado no layout -->
+  {% if page.layout == 'default' %}
+    <link rel="stylesheet" href="{{ "/assets/css/index.css" | prepend: site.baseurl }}">
+  {% endif %}
+
+  {% if page.layout == 'post' %}
+    <script src="{{ "/assets/js/post-enhancements.js" | prepend: site.baseurl }}"></script>
+    <link rel="stylesheet" href="{{ "/assets/css/post.css" | prepend: site.baseurl }}">
+  {% endif %}
+
+  {% if page.layout == 'quotes' %}
+    <link rel="stylesheet" href="{{ "/assets/css/quote.css" | prepend: site.baseurl }}">
+  {% endif %}
+
+  {% if page.layout == 'category_page' %}
+    <link rel="stylesheet" href="{{ "/assets/css/categories.css" | prepend: site.baseurl }}">
+  {% endif %}
+
+  <!-- CSS customizado específico da página (se especificado no front matter) -->
+  {% if page.custom_css %}
+    {% for css_file in page.custom_css %}
+      <link rel="stylesheet" href="{{ css_file | prepend: site.baseurl }}">
+    {% endfor %}
+  {% endif %}
+
+  <!-- JavaScript customizado específico da página (se especificado no front matter) -->
+  {% if page.custom_js %}
+    {% for js_file in page.custom_js %}
+      <script src="{{ js_file | prepend: site.baseurl }}"></script>
+    {% endfor %}
+  {% endif %}
+
 </head>

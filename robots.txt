@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://contramare.com.br/sitemap.xml
+
+# Disallow admin and internal files
+Disallow: /admin/
+Disallow: /.well-known/
+Disallow: /assets/js/
+Disallow: /assets/css/
+Disallow: /_site/
+Disallow: /.git/
+Disallow: /.jekyll-cache/
+
+# Allow important assets
+Allow: /assets/uploads/
+Allow: /assets/base/
+
+# Crawl delay (optional - remove if causing issues)
+Crawl-delay: 1

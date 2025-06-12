@@ -1,0 +1,13 @@
+---
+tag: Frases
+layout: page
+permalink: /quotes/
+---
+
+{% if site.features.quotes_page %}
+<div class="category">
+  {% include category_publications.html %}
+</div>
+{% else %}
+  {% include content_unavailable.html %}
+{% endif %}

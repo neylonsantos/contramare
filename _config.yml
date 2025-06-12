@@ -19,16 +19,35 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Contramaré
-email: contato@contramare.page
+email: contato@contramare.com.br
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-domain: neylonsantos.github.io
-baseurl: "/contramare" # the subpath of your site, e.g. /blog
-url: "https://neylonsantos.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-twitter: contramare_page
-github:  neylonsantos
+  O **Contramaré** é um blog de reflexões provocativas que desafia o senso
+  comum. Nasce da inquietação com comportamentos normalizados que revelam
+  imaturidade, falta de autorresponsabilidade e comodismo. Nossa missão é
+  provocar, incomodar, e despertar — com textos que funcionam como espelhos e
+  cutucam feridas. Não escrevemos para agradar. Escrevemos para transformar.
+  Porque crescer exige confronto. E quem vai contra a maré, nunca volta igual.
+domain: contramare.com.br
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://contramare.com.br" # the base hostname & protocol for your site, e.g. http://example.com
+
+# SEO and Social Media
+author: Neylon Santos
+lang: pt-BR
+timezone: America/Sao_Paulo
+
+# Modular Features Configuration
+features:
+  quotes_page: false
+  blog_page: true
+  contact_page: true
+  about_page: true
+
+# Mapeamento de categorias para funcionalidades
+category_feature_map:
+  "Frases": "quotes_page"
+  "Blog": "blog_page"
+  "Sobre": "about_page"
 
 permalink: /:categories/:title/
 
@@ -42,12 +61,75 @@ defaults:
       path: ""
       type: category
     values:
-      layout: "categoryPage"
+      layout: "category_page"
+  -
+    scope:
+      path: ""
+      type: posts
+    values:
+      layout: "post"
+  -
+    scope:
+      path: "pages"
+    values:
+      layout: "page"
 
 # Build settings
 # theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-redirect-from
+
+# SEO Plugin Configuration
+seo:
+  type: Person
+  name: Neylon Santos
+  links:
+    - https://neylon.xyz
+
+# Social Media
+social:
+  name: Contramaré
+  links:
+    - https://contramare.com.br
+    - https://x.com/contramare_page
+
+# Google Analytics (adicione seu ID quando tiver)
+google_analytics: # G-XXXXXXXXXX
+
+# Google Search Console (adicione quando tiver)
+google_site_verification: # seu-codigo-de-verificacao
+
+# Feed Configuration (jekyll-feed plugin)
+feed:
+  posts_limit: 20
+  excerpt_only: false
+  collections:
+    posts:
+      path: "/feed.xml"
+
+# Image optimization
+compress_images:
+  images_path: "assets/uploads/**/*.{gif,png,jpg,jpeg,svg}"
+
+# Performance and optimization
+sass:
+  style: compressed
+
+# Security headers
+webrick:
+  headers:
+    X-Frame-Options: SAMEORIGIN
+    X-Content-Type-Options: nosniff
+    X-XSS-Protection: 1; mode=block
+
+# Markdown settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -57,14 +139,17 @@ plugins:
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+  - LICENSE
+  - .gitignore

@@ -1,0 +1,25 @@
+<div class="last-publications container px-0 d-flex flex-column align-items-center">
+  <h2 class="text-center">Mais Recentes</h2>
+
+  <hr class="mb-5">
+
+  {% assign active_posts = site.data.filtered_posts %}
+  {% for post in active_posts limit:5%}
+  <div class="card">
+    <a href="{{ post.url | prepend: site.baseurl }}" class="text-decoration-none text-dark">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="post-date"> <small class="text-muted"> <i class="bi bi-clock"></i> {{ post.date | date: "%-d %b %-Y" }}</small></p>
+        </div>
+        <p class="card-text mb-2">{{ post.description }}</p>
+        <p class="category"> {{ post.categories }} </p>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+
+  {% if site.features.blog_page %}
+    <a href="{{ site.baseurl }}/blog" class="more-posts-btn mt-1">Explorar</a>
+  {% endif %}
+</div>

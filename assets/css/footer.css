@@ -1,3 +1,11 @@
-.masterFooter {
+.master-footer {
   background: #e3f2fd;
+}
+
+.footer-image img {
+  width: 250px;
+  height: 100px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }

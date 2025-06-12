@@ -1,32 +1,37 @@
-<header class="masterHeader">
+<header class="master-header">
 
-  <div class="subHeader container pt-4 pb-3 d-flex flex-column align-items-center">
+  <div class="sub-header container pt-4 pb-3 d-flex flex-column align-items-center">
 
-    <div class="logo">
-      <!-- <img src="/assets/base/contramare-logo-name-dark.svg" class="img-fluid" width="200px" height="auto" alt=""> -->
-    </div>
-
-    <!-- <hr> -->
-
-    <button onclick="show()" class="menuBtn" type="submit"> <i class="bi bi-chevron-compact-down"></i> </button>
+    <button onclick="show()" class="menu-btn" type="button" aria-label="Abrir menu">
+      <i class="bi bi-chevron-down menu-icon-down"></i>
+      <i class="bi bi-x-lg menu-icon-close"></i>
+    </button>
 
     <nav class="menu mt-2">
       <ul id="menu" class="nav justify-content-end">
         <li class="nav-item">
           <a class="nav-link" href="{{ site.baseurl }}/">INÍCIO</a>
         </li>
+        {% if site.features.contact_page %}
         <li class="nav-item">
-          <a class="nav-link" href="contato">CONTATO</a>
+          <a class="nav-link" href="{{ site.baseurl }}/contact">CONTATO</a>
         </li>
+        {% endif %}
+        {% if site.features.blog_page %}
         <li class="nav-item">
-          <a class="nav-link" href="blog">BLOG</a>
+          <a class="nav-link" href="{{ site.baseurl }}/blog">BLOG</a>
         </li>
+        {% endif %}
+        {% if site.features.quotes_page %}
         <li class="nav-item">
-          <a class="nav-link" href="frases">FRASES</a>
+          <a class="nav-link" href="{{ site.baseurl }}/quotes">FRASES</a>
         </li>
+        {% endif %}
+        {% if site.features.about_page %}
         <li class="nav-item">
-          <a class="nav-link" href="sobre">SOBRE</a>
+          <a class="nav-link" href="{{ site.baseurl }}/about">SOBRE</a>
         </li>
+        {% endif %}
       </ul>
     </nav>
   </div>

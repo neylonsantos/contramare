@@ -1,0 +1,119 @@
+# Nome do Workflow
+name: Deploy Jekyll para Servidor
+
+# Gatilhos que iniciam o workflow
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.8'
+          bundler-cache: true
+
+      # Validação das dependências
+      - name: Verificar dependências
+        run: |
+          if [ ! -f "Gemfile" ]; then
+            echo "❌ Gemfile não encontrado!"
+            exit 1
+          fi
+          bundle install --jobs 4 --retry 3
+
+      - name: Build do site com Jekyll
+        run: |
+          bundle exec jekyll build
+          # Verifica se o build foi bem-sucedido
+          if [ ! -d "_site" ] || [ -z "$(ls -A _site)" ]; then
+            echo "❌ Build falhou ou diretório _site está vazio!"
+            exit 1
+          fi
+          echo "✅ Build concluído com sucesso"
+
+      - name: Compactar arquivos do site
+        run: tar -czf site.tar.gz -C _site .
+
+      - name: Transferir arquivos para o servidor
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "site.tar.gz"
+          target: "/tmp"
+
+      - name: Deploy no servidor
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            set -e  # Para em caso de erro
+
+            TARGET_DIR="/contramare_com_br"
+            BACKUP_DIR="${TARGET_DIR}_backup_$(date +%Y%m%d_%H%M%S)"
+
+            echo "🚀 Iniciando deploy em ${TARGET_DIR}..."
+
+            # Verifica se o arquivo foi transferido
+            if [ ! -f "/tmp/site.tar.gz" ]; then
+              echo "❌ Arquivo site.tar.gz não encontrado!"
+              exit 1
+            fi
+
+            # Cria diretório de destino se não existir
+            mkdir -p ${TARGET_DIR}
+
+            # Backup mais robusto
+            if [ "$(ls -A ${TARGET_DIR} 2>/dev/null | head -1)" ]; then
+              echo "📦 Criando backup em ${BACKUP_DIR}..."
+              cp -r ${TARGET_DIR} ${BACKUP_DIR}
+            fi
+
+            # Limpa diretório atual
+            echo "🧹 Limpando diretório atual..."
+            rm -rf ${TARGET_DIR}/*
+            rm -rf ${TARGET_DIR}/.[!.]*
+
+            # Extrai novos arquivos
+            echo "📂 Extraindo novos arquivos..."
+            tar -xzf /tmp/site.tar.gz -C ${TARGET_DIR}
+
+            # Verifica se a extração foi bem-sucedida
+            if [ ! "$(ls -A ${TARGET_DIR})" ]; then
+              echo "❌ Falha na extração! Restaurando backup..."
+              if [ -d "${BACKUP_DIR}" ]; then
+                cp -r ${BACKUP_DIR}/* ${TARGET_DIR}/
+                cp -r ${BACKUP_DIR}/.[!.]* ${TARGET_DIR}/ 2>/dev/null || true
+              fi
+              exit 1
+            fi
+
+            # Ajusta permissões
+            echo "🔐 Ajustando permissões..."
+            find ${TARGET_DIR} -type f -exec chmod 644 {} \;
+            find ${TARGET_DIR} -type d -exec chmod 755 {} \;
+
+            # Limpeza
+            echo "🧽 Removendo arquivos temporários..."
+            rm -f /tmp/site.tar.gz
+
+            # Mantém apenas os 5 backups mais recentes
+            echo "🗂️ Limpando backups antigos..."
+            ls -dt /contramare_com_br_backup_* 2>/dev/null | tail -n +6 | xargs rm -rf
+
+            echo "✅ Deploy concluído com sucesso!"
+            echo "📊 Conteúdo atual:"
+            ls -alh ${TARGET_DIR} | head -10

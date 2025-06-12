@@ -1,25 +1,77 @@
 ---
 permalink: /404.html
 layout: default
+title: "Página Não Encontrada - 404"
+description: "A página que você está procurando não foi encontrada. Navegue pelo nosso conteúdo ou volte à página inicial."
 ---
 
 <style type="text/css" media="screen">
   .container {
     margin: 10px auto;
-    max-width: 600px;
+    max-width: 800px;
     text-align: center;
+    padding: 50px 20px;
   }
   h1 {
     margin: 30px 0;
     font-size: 4em;
     line-height: 1;
     letter-spacing: -1px;
+    color: #2789ce;
+  }
+  .error-message {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+  }
+  .back-home {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #2789ce;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin: 10px;
+  }
+  .back-home:hover {
+    background-color: #1e6ba8;
+    color: white;
+  }
+  .search-section {
+    margin: 40px 0;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+  }
+  .popular-posts {
+    margin-top: 40px;
+    text-align: left;
+  }
+  .popular-posts h3 {
+    text-align: center;
+    margin-bottom: 20px;
   }
 </style>
 
 <div class="container">
   <h1>404</h1>
+  <div class="error-message">
+    <p><strong>Página não encontrada :(</strong></p>
+    <p>A página que você está procurando não existe, foi movida ou o link pode estar quebrado.</p>
+  </div>
 
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
+  <div>
+    <a href="{{ site.baseurl }}/" class="back-home">🏠 Voltar ao início</a>
+    <a href="{{ site.baseurl }}/blog" class="back-home">📝 Ver todos os posts</a>
+  </div>
 </div>
+
+<script>
+  // Track 404 errors for analytics
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'page_view', {
+      page_title: '404 - Page Not Found',
+      page_location: window.location.href
+    });
+  }
+</script>

@@ -1,8 +1,8 @@
-<div class="quoteContent container d-flex flex-column justify-content-center">
+<div class="quote-content container d-flex flex-column justify-content-center">
 
-  <div class="imgQuote d-flex flex-row mb-3 justify-content-center">
+  <div class="img-quote d-flex flex-row mb-3 justify-content-center">
 
-    <img src="/assets/base/contramare-line-dark.png">
+    <img src="{{ "/assets/base/contramare-line.png" | prepend: site.baseurl }}">
 
   </div>
 
@@ -13,7 +13,7 @@
       <hr class="mb-3">
     </div>
 
-    <div class="socialIconsQuote container d-flex flex-row justify-content-evenly" style="width: 50%;">
+    <div class="social-icons-quote container d-flex flex-row justify-content-evenly" style="width: 50%;">
         <a href="mailto:?subject={{ site.title }}&amp;body={{ page.quote }} -{{ page.quote_author }} {{ site.url }}{{ page.url }}"><p style="font-size: 25px;"><i class="bi bi-envelope"></i></p></a>
         <a href="https://facebook.com/sharer.php?u={{ site.url }}{{ page.url }}" rel="nofollow" target="_blank" title="Share on Facebook"><p style="font-size: 25px;"><i class="bi bi-facebook"></i></p></a>
         <a href="https://twitter.com/intent/tweet?text={{ page.quote }}-{{ page.quote_author }}&url={{ site.url }}{{ page.url }}&via={{ site.twitter }}&related={{ site.twitter }}" rel="nofollow" target="_blank" title="Share on Twitter"><p style="font-size: 25px;"><i class="bi bi-twitter"></i></p></a>

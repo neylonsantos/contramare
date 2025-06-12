@@ -1,9 +1,10 @@
-<div class="categoryPublications container px-0 d-flex flex-column align-items-center">
+<div class="category-publications container px-0 d-flex flex-column align-items-center">
   <h2 class="text-center">{{ page.tag }}</h2>
 
   <hr class="mb-5">
 
-  {% for post in site.categories[page.tag] %}
+  {% assign category_posts = site.categories[page.tag] | posts_by_active_features %}
+  {% for post in category_posts %}
   <div class="card">
     <div class="card-body">
       <a href="{{ post.url | prepend: site.baseurl }}"> <h5 class="card-title text-center"> {{ post.quote }}</h5> </a>

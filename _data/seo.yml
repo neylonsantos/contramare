@@ -1,0 +1,40 @@
+# SEO Configuration Data
+default_image: "/assets/base/contramare-social-image.jpg"
+organization:
+  name: "Contramaré"
+  url: "https://contramare.com.br"
+  logo: "/assets/base/contramare-icon.png"
+  same_as:
+    - "https://x.com/contramare_blog"
+    - "https://instagram.com/contramare_blog"
+
+# Author information
+author:
+  name: "Neylon Santos"
+  image: "/assets/base/author.jpg"
+  bio: "I'm a christian, software engineer, writer, and creator. I'm also the creator of @contramare."
+  url: "https://contramare.com.br/about"
+  social:
+    x: "https://x.com/neylonxyz"
+    github: "https://github.com/neylonssantos"
+
+# Image dimensions for social sharing
+image_defaults:
+  twitter:
+    width: 1200
+    height: 600
+  facebook:
+    width: 1200
+    height: 630
+  linkedin:
+    width: 1200
+    height: 627
+
+# Categories configuration
+categories:
+  Reflexões:
+    description: "Artigos provocativos que desafiam o senso comum e estimulam a reflexão crítica."
+    color: "#2c3e50"
+  Blog:
+    description: "Conteúdos diversos sobre desenvolvimento pessoal e social."
+    color: "#34495e"

@@ -1,0 +1,47 @@
+---
+layout: page
+permalink: /contact/
+title: "Contato"
+description: "Entre em contato conosco - Contramaré"
+include_faq: false
+custom_css:
+  - "/assets/css/contact.css"
+custom_js:
+  - "/assets/js/contact.js"
+---
+
+{% if site.features.contact_page %}
+<div class="contato-container">
+  <header class="contato-header">
+    <h1>Contato</h1>
+    <p class="contato-subtitle">Tem algo a falar?</p>
+  </header>
+
+  <main class="contato-content">
+    <div class="contato-info">
+      <div class="email-card">
+        <div class="email-icon">✉️</div>
+        <div class="email-content">
+          <h2>Fale Conosco</h2>
+          <p>A melhor forma de entrar em contato conosco é através do nosso email:</p>
+          <a href="mailto:contato@contramare.com.br" class="email-link" onclick="trackEmailClick()">
+            contato@contramare.com.br
+          </a>
+        </div>
+      </div>
+
+      <div class="contato-mensagem">
+        <p>Seja para sugestões, parcerias, dúvidas ou apenas para compartilhar seus pensamentos,
+        estamos sempre abertos ao diálogo.</p>
+      </div>
+    </div>
+  </main>
+
+  {% if page.include_faq %}
+    {% include faq-contato.html %}
+  {% endif %}
+</div>
+
+{% else %}
+  {% include content_unavailable.html %}
+{% endif %}
