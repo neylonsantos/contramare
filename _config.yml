@@ -96,11 +96,11 @@ social:
     - https://contramare.com.br
     - https://x.com/contramare_page
 
-# Google Analytics (adicione seu ID quando tiver)
-google_analytics: # G-XXXXXXXXXX
+# Google Analytics
+google_analytics: G-RQ21K77JYG
 
-# Google Search Console (adicione quando tiver)
-google_site_verification: # seu-codigo-de-verificacao
+# Google Search Console
+google_site_verification:
 
 # Feed Configuration (jekyll-feed plugin)
 feed:
