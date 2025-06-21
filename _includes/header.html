@@ -2,6 +2,12 @@
 
   <div class="sub-header container pt-4 pb-3 d-flex flex-column align-items-center">
 
+    {% if page.url == '/blog/' or page.url == '/contact/' %}
+      <div class="header-logo">
+        <img src="/assets/base/contramare-line.png" alt="header-logo">
+      </div>
+    {% endif %}
+
     <button onclick="show()" class="menu-btn" type="button" aria-label="Abrir menu">
       <i class="bi bi-chevron-down menu-icon-down"></i>
       <i class="bi bi-x-lg menu-icon-close"></i>

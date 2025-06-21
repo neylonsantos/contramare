@@ -3,6 +3,14 @@ header {
   font-weight: 600;
 }
 
+.header-logo img {
+  width: 250px;
+  height: 75px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
 .master-header ul li a {
   color: #2789ce;
 }
