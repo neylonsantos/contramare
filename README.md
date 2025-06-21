@@ -1,4 +1,6 @@
-# 🌊 Contramaré
+<div>
+  <h1><img src="assets/base/contramare-icon.png" alt="Contramaré" width="35"> Contramaré</h1>
+</div>
 
 > *"Fácil é seguir o fluxo, difícil é ir contra a maré."*
 
