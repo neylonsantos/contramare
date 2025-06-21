@@ -5,9 +5,11 @@
   {% include header.html %}
 
   <div class="main">
-    {% include apresentation.html %}
-    {% include last_publications.html %}
+    <div class="d-flex flex-column align-items-center">
+      {% include apresentation.html %}
+      {% include last_publications.html %}
+    </div>
   </div>
 
-  {% include footer.html %}
+{% include footer.html %}
 </body>
