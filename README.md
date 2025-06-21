@@ -1,169 +1,467 @@
-# Contramaré
+# 🌊 Contramaré
 
-Um site estático desenvolvido com Jekyll dedicado à reflexão, literatura e pensamentos que inspiram.
+> *"Fácil é seguir o fluxo, difícil é ir contra a maré."*
+
+Um blog de reflexões provocativas desenvolvido com Jekyll, focado em desafiar o senso comum e promover o pensamento crítico através de textos que funcionam como espelhos e confrontos internos.
+
+---
+
+## 📋 Índice
+
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Características Técnicas](#-características-técnicas)
+- [Tecnologias](#-tecnologias)
+- [Instalação](#-instalação)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Sistema Modular](#-sistema-modular)
+- [Otimizações de Performance](#-otimizações-de-performance)
+- [SEO e Analytics](#-seo-e-analytics)
+- [Conteúdo](#-conteúdo)
+- [Deploy](#-deploy)
+- [Contribuição](#-contribuição)
+- [Licença](#-licença)
+
+---
 
 ## 📖 Sobre o Projeto
 
-Contramaré é um espaço digital onde você pode encontrar:
-- Frases marcantes e inspiradoras
-- Artigos reflexivos
-- Conteúdos que tocam a alma
-- Pensamentos sobre literatura e vida
+O **Contramaré** é mais que um blog — é um ponto de resistência intelectual. Nasce da inquietação com comportamentos normalizados que revelam imaturidade, falta de autorresponsabilidade e comodismo.
 
-## 🚀 Funcionalidades
+### 🎯 Missão
+- Provocar reflexões
+- Desafiar a preguiça intelectual
+- Combater a transferência covarde da culpa
+- Promover o autocontrole como força, não fraqueza
 
-- **Carregamento otimizado de CSS**: O CSS é carregado condicionalmente baseado no layout e necessidades da página
-- **Design responsivo**: Adaptado para diferentes tamanhos de tela
-- **SEO otimizado**: Meta tags e estrutura otimizada para mecanismos de busca
-- **Performance otimizada**: Carregamento inteligente de recursos
+### 🎯 Não somos para todos
+- Não oferecemos respostas fáceis nem caminhos suaves
+- Não escrevemos para agradar, mas para transformar
+- Buscamos o desconforto que liberta e o incômodo que eleva
 
-## 🚀 Tecnologias Utilizadas
+---
 
+## ⚡ Características Técnicas
+
+### 🏗️ Arquitetura Avançada
+- **Sistema modular** com ativação/desativação de funcionalidades
+- **Carregamento condicional de CSS** baseado em layout e contexto
+- **Filtragem automática de conteúdo** por categoria
+- **Otimizações de performance** para carregamento rápido
+
+### 🎨 Design e UX
+- **Design responsivo** adaptado para todos os dispositivos
+- **Tipografia elegante** com Google Fonts (Comfortaa)
+- **Interface limpa** focada na leitura
+- **Navegação intuitiva** com sistema de categorias
+
+### 🔍 SEO e Performance
+- **SEO otimizado** com meta tags estruturadas
+- **Schema.org markup** para rich snippets
+- **Sitemap automático** e feed RSS
+- **Compressão de imagens** automática
+- **Google Analytics** integrado
+
+---
+
+## 🛠️ Tecnologias
+
+### Core
 - **Jekyll** - Gerador de sites estáticos
-- **Bootstrap 5** - Framework CSS
-- **Bootstrap Icons** - Ícones
-- **Google Fonts** - Tipografia (Comfortaa)
+- **Ruby** - Linguagem base
+- **Liquid** - Template engine
 
-## 🛠️ Instalação e Desenvolvimento
+### Frontend
+- **Bootstrap 5** - Framework CSS responsivo
+- **Bootstrap Icons** - Biblioteca de ícones
+- **CSS customizado** com carregamento condicional
+- **JavaScript vanilla** para interações
+
+### Plugins e Otimizações
+- **jekyll-seo-tag** - SEO automático
+- **jekyll-sitemap** - Geração de sitemap
+- **jekyll-feed** - Feed RSS
+- **jekyll-redirect-from** - Redirecionamentos
+- **jekyll-compress-images** - Otimização de imagens
+
+### Plugins Customizados
+- **feature_filter.rb** - Filtro de funcionalidades modulares
+- **latin_slugify.rb** - Geração de URLs amigáveis
+
+---
+
+## 🚀 Instalação
 
 ### Pré-requisitos
+```bash
+# Ruby (versão 2.7 ou superior)
+ruby --version
 
-- Ruby (versão 2.7 ou superior)
-- Bundler
-- Git
+# Bundler
+gem install bundler
+
+# Git
+git --version
+```
 
 ### Configuração Local
 
-1. Clone o repositório:
+1. **Clone o repositório**
 ```bash
 git clone https://github.com/neylonsantos/contramare.git
 cd contramare
 ```
 
-2. Instale as dependências:
+2. **Instale as dependências**
 ```bash
 bundle install
 ```
 
-3. Execute o servidor local:
+3. **Configure as variáveis de ambiente** (opcional)
+```bash
+# Crie um arquivo .env para variáveis locais
+cp .env.example .env
+```
+
+4. **Execute o servidor de desenvolvimento**
 ```bash
 bundle exec jekyll serve
 ```
 
-4. Acesse o site em: `http://localhost:4000/contramare`
+5. **Acesse o site**
+```
+http://localhost:4000
+```
+
+### Comandos Úteis
+
+```bash
+# Desenvolvimento com drafts
+bundle exec jekyll serve --drafts
+
+# Build para produção
+bundle exec jekyll build
+
+# Build com perfil de performance
+bundle exec jekyll build --profile
+
+# Limpeza de cache
+bundle exec jekyll clean
+```
+
+---
 
 ## 📁 Estrutura do Projeto
 
 ```
 contramare/
-├── _includes/          # Componentes reutilizáveis
-├── _layouts/           # Templates de página
-├── _posts/             # Posts do blog
-├── _category/          # Páginas de categoria
-├── assets/             # CSS, JS, imagens
-├── pages/              # Páginas estáticas
-├── _config.yml         # Configuração do Jekyll
-└── index.html          # Página inicial
+├── 📄 Configuração
+│   ├── _config.yml              # Configurações principais
+│   ├── Gemfile                  # Dependências Ruby
+│   └── robots.txt               # Diretivas para crawlers
+│
+├── 🏗️ Estrutura Jekyll
+│   ├── _includes/               # Componentes reutilizáveis
+│   │   ├── head.html           # Meta tags e SEO
+│   │   ├── header.html         # Navegação principal
+│   │   ├── footer.html         # Rodapé
+│   │   ├── last_publications.html  # Posts recentes
+│   │   └── content_unavailable.html # Página de indisponível
+│   │
+│   ├── _layouts/                # Templates de página
+│   │   ├── default.html        # Layout base
+│   │   ├── page.html           # Páginas estáticas
+│   │   ├── post.html           # Posts individuais
+│   │   ├── quotes.html         # Layout para frases
+│   │   └── category_page.html  # Páginas de categoria
+│   │
+│   ├── _posts/                  # Conteúdo do blog
+│   │   ├── quotes/             # Frases e citações
+│   │   └── _template-post-seo.md  # Template para novos posts
+│   │
+│   ├── _category/               # Páginas de categoria
+│   ├── _data/                   # Dados estruturados
+│   └── _plugins/                # Plugins customizados
+│
+├── 🎨 Assets
+│   ├── assets/css/              # Estilos CSS modulares
+│   ├── assets/js/               # JavaScript customizado
+│   ├── assets/base/             # Logos e imagens base
+│   └── assets/uploads/          # Upload de conteúdo
+│
+├── 📄 Páginas
+│   ├── pages/                   # Páginas estáticas
+│   │   ├── about.html          # Sobre/Manifesto
+│   │   ├── blog.html           # Lista de posts
+│   │   ├── contact.html        # Contato
+│   │   └── quotes.html         # Frases
+│   ├── index.html              # Página inicial
+│   └── 404.html                # Página de erro
+│
+└── 📚 Documentação
+    └── README.md               # Este arquivo
 ```
 
-## 🎨 Carregamento Condicional de CSS
+---
 
-Para otimizar a performance, implementamos um sistema de carregamento condicional de CSS:
+## ⚙️ Sistema Modular
 
-### CSS Global (sempre carregado)
-- `header.css` - Estilos do cabeçalho
-- `main.css` - Estilos principais
-- `footer.css` - Estilos do rodapé
+O Contramaré possui um **sistema modular único** que permite ativar/desativar funcionalidades inteiras do site.
 
-### CSS Condicional
+### Configuração em `_config.yml`
 
-**Por Layout:**
-- `post.css` - Carregado apenas em páginas com `layout: post`
-- `quote.css` - Carregado apenas em páginas com `layout: quotes`
-- `categories.css` - Carregado apenas em páginas com `layout: category_page`
+```yaml
+# Controle de funcionalidades
+features:
+  quotes_page: false    # Página de frases
+  blog_page: true       # Página do blog
+  contact_page: true    # Página de contato
+  about_page: true      # Página sobre
 
-**Por URL ou Variável:**
-- `blog.css` - Carregado em:
-  - Páginas com `show_blog_css: true` no front matter
-  - URLs que contenham `/blog` ou `/category`
+# Mapeamento categoria → funcionalidade
+category_feature_map:
+  "Frases": "quotes_page"
+  "Blog": "blog_page"
+  "Reflexões": "blog_page"
+```
 
-**CSS Customizado:**
-Você pode adicionar CSS específico para qualquer página usando o front matter:
+### O que acontece quando uma funcionalidade está INATIVA:
 
+- ❌ **Link removido** do menu de navegação
+- ❌ **Posts da categoria ocultos** em todas as listas
+- ❌ **Páginas mostram** "em desenvolvimento"
+- ❌ **Posts individuais** exibem mensagem de indisponibilidade
+
+### Vantagens do Sistema
+
+✅ **Controle granular** de conteúdo
+✅ **Desenvolvimento incremental** de funcionalidades
+✅ **Teste A/B** fácil de implementar
+✅ **Manutenção simplificada**
+✅ **Deploy seletivo** de features
+
+---
+
+## ⚡ Otimizações de Performance
+
+### CSS Condicional Inteligente
+
+O site carrega CSS de forma **inteligente e condicional**:
+
+#### CSS Global (sempre carregado)
+```css
+header.css    # Navegação
+main.css      # Estilos base
+footer.css    # Rodapé
+```
+
+#### CSS por Layout
+```css
+post.css      # Layout: post
+quote.css     # Layout: quotes
+categories.css # Layout: category_page
+```
+
+#### CSS por Contexto
+```css
+blog.css      # URLs com /blog ou /category
+about.css     # Página específica
+contact.css   # Página de contato
+```
+
+#### CSS Customizado por Página
 ```yaml
 ---
 layout: page
-title: "Minha Página"
-custom_css:
-  - "/assets/css/custom-page.css"
-  - "/assets/css/special-components.css"
----
-```
-
-### Exemplos de Uso
-
-**Para uma página de blog:**
-```yaml
----
-layout: page
-permalink: /blog/
-show_blog_css: true
----
-```
-
-**Para um post:**
-```yaml
----
-layout: post
-title: "Meu Post"
-# post.css será carregado automaticamente
----
-```
-
-**Para uma página com CSS customizado:**
-```yaml
----
-layout: page
-title: "Página Especial"
 custom_css:
   - "/assets/css/animations.css"
   - "/assets/css/special-layout.css"
 ---
 ```
 
-## 📝 Como Adicionar Conteúdo
+### Outras Otimizações
 
-### Novo Post
-Crie um arquivo em `_posts/` seguindo o padrão:
-```
-YYYY-MM-DD-titulo-do-post.markdown
+- 🚀 **Compressão SASS** automática
+- 🖼️ **Otimização de imagens** via plugin
+- 📱 **Lazy loading** implementado
+- 🔒 **Headers de segurança** configurados
+- 📊 **Preload de recursos** críticos
+
+---
+
+## 🔍 SEO e Analytics
+
+### SEO Técnico Implementado
+
+✅ **Meta tags estruturadas** com jekyll-seo-tag
+✅ **Schema.org markup** (JSON-LD e Microdata)
+✅ **Sitemap.xml** automático
+✅ **Feed RSS** otimizado
+✅ **Canonical URLs** para evitar duplicação
+✅ **Rich snippets** para posts
+✅ **Breadcrumb navigation**
+✅ **Open Graph** e Twitter Cards
+
+### Analytics e Monitoramento
+
+- **Google Analytics 4** configurado
+- **Google Search Console** preparado
+- **Performance tracking** implementado
+- **Error tracking** na página 404
+
+### Template SEO para Posts
+
+```yaml
+---
+layout: post
+title: "Título otimizado (máx 60 chars)"
+description: "Meta descrição atrativa (150-160 chars)"
+image: '/assets/uploads/post_images/imagem-1200x630.jpg'
+categories: Reflexões
+tags: [reflexão, crescimento, autocontrole]
+date: 2025-01-15 07:00:00 -0300
+---
 ```
 
-### Nova Frase
-Use o layout `quotes` no front matter:
+---
+
+## ✍️ Conteúdo
+
+### Tipos de Conteúdo
+
+#### 📝 **Posts de Reflexão**
+Artigos provocativos que desafiam comportamentos normalizados:
+- Mediocridade emocional
+- Transferência de responsabilidade
+- Preguiça intelectual
+- Crescimento pessoal através do desconforto
+
+#### 💭 **Frases e Citações** (Funcionalidade Modular)
+Sistema especial para frases marcantes com:
+- Layout dedicado (`quotes`)
+- Metadata específica (autor, contexto)
+- Filtragem automática por categoria
+
+### Adicionando Novo Conteúdo
+
+#### Novo Post
+```bash
+# 1. Crie o arquivo
+touch _posts/YYYY-MM-DD-titulo-do-post.markdown
+
+# 2. Use o template SEO
+cp _posts/_template-post-seo.md _posts/YYYY-MM-DD-seu-post.markdown
+
+# 3. Edite o conteúdo
+# 4. Teste localmente
+bundle exec jekyll serve --drafts
+```
+
+#### Nova Frase
 ```yaml
 ---
 layout: quotes
-title: "Título da frase"
-quote: "Texto da frase"
-quote_author: "Autor"
+title: "Título da Reflexão"
+quote: "Texto da frase inspiradora"
+quote_author: "Autor da Frase"
 categories: Frases
+date: 2025-01-15
 ---
+
+Contexto adicional ou reflexão sobre a frase...
 ```
 
-## 🌐 Deploy
+---
 
-O site é automaticamente publicado no GitHub Pages quando há push na branch `main`.
+## 🚀 Deploy
 
-URL: https://contramare.com.br
+### GitHub Pages (Automático)
+O site é **automaticamente publicado** a cada push na branch principal:
+
+```bash
+git add .
+git commit -m "Novo post: Título do Post"
+git push origin main
+```
+
+### Deploy Manual
+```bash
+# Build para produção
+bundle exec jekyll build
+
+# Upload da pasta _site para seu servidor
+rsync -avz _site/ user@server:/path/to/site/
+```
+
+### Configurações de Produção
+
+```yaml
+# _config.yml
+url: "https://contramare.com.br"
+baseurl: ""
+domain: contramare.com.br
+google_analytics: G-RQ21K77JYG
+```
+
+---
+
+## 🤝 Contribuição
+
+### Como Contribuir
+
+1. **Fork** o repositório
+2. **Crie** uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
+3. **Commit** suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
+4. **Push** para a branch (`git push origin feature/nova-funcionalidade`)
+5. **Abra** um Pull Request
+
+### Diretrizes
+
+- ✅ **Mantenha** o padrão de código existente
+- ✅ **Teste** localmente antes de submeter
+- ✅ **Documente** novas funcionalidades
+- ✅ **Siga** as convenções de nomenclatura
+- ✅ **Otimize** para performance e SEO
+
+### Reportar Problemas
+
+Use as [Issues do GitHub](https://github.com/neylonsantos/contramare/issues) para:
+- 🐛 Reportar bugs
+- 💡 Sugerir melhorias
+- ❓ Fazer perguntas
+- 🚀 Propor novas funcionalidades
+
+---
 
 ## 📄 Licença
 
-Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+Este projeto está sob a **Licença MIT**. Veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+---
 
 ## 👨‍💻 Autor
 
 **Neylon Santos**
-- GitHub: [@neylonsantos](https://github.com/neylonsantos)
-- Email: contato@contramare.com.br
-- Twitter: [@contramare_page](https://twitter.com/contramare_page)
+
+- 🌐 **Site:** [contramare.com.br](https://contramare.com.br)
+- 📧 **Email:** contato@contramare.com.br
+- 💼 **GitHub:** [@neylonsantos](https://github.com/neylonsantos)
+- 🐦 **Twitter:** [@contramare_page](https://twitter.com/contramare_blog)
+- 🔗 **Mais:** [Neylon Santos](https://neylon.xyz)
+
+---
+
+## 🌊 Filosofia
+
+> *"Não tenho todas as respostas. Mas tenho muitas perguntas. E acredito que, quando bem feitas, elas têm o poder de transformar."*
+
+**Ser Contramaré** é ter coragem de olhar para si com sinceridade. É entender que crescer dói — e que isso é bom. É saber que maturidade não se alcança com likes, mas com confronto interno.
+
+**Questionar é o primeiro passo. Mudar é a jornada.**
+
+---
+
+<div align="center">
+  <img src="assets/base/contramare-line.png" alt="Contramaré" width="200">
+
+  **🌊 Junte-se a nós nesta travessia. Aqui, não se navega em águas rasas.**
+</div>
