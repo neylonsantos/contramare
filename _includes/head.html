@@ -81,7 +81,7 @@
     "wordCount": "{{ page.content | number_of_words }}"
     {% else %}
     "name": "{{ site.title }}",
-    "description": "{{ site.description }}",
+    "description": "{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}",
     "url": "{{ site.url }}",
     "publisher": {
       "@type": "Organization",
