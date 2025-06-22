@@ -21,12 +21,7 @@
 title: Contramaré
 email: contato@contramare.com.br
 description: >- # this means to ignore newlines until "baseurl:"
-  O **Contramaré** é um blog de reflexões provocativas que desafia o senso
-  comum. Nasce da inquietação com comportamentos normalizados que revelam
-  imaturidade, falta de autorresponsabilidade e comodismo. Nossa missão é
-  provocar, incomodar, e despertar — com textos que funcionam como espelhos e
-  cutucam feridas. Não escrevemos para agradar. Escrevemos para transformar.
-  Porque crescer exige confronto. E quem vai contra a maré, nunca volta igual.
+  Fácil é seguir o fluxo, difícil é ir contra a maré
 domain: contramare.com.br
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://contramare.com.br" # the base hostname & protocol for your site, e.g. http://example.com
@@ -73,6 +68,13 @@ defaults:
       path: "pages"
     values:
       layout: "page"
+  -
+    scope:
+      path: "index.html"
+    values:
+      image: "/assets/base/contramare-icon.png"
+      seo:
+        type: WebSite
 
 # Build settings
 # theme: minima
