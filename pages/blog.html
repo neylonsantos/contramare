@@ -4,6 +4,7 @@ title: "Blog"
 permalink: /blog/
 custom_css:
   - "/assets/css/blog.css"
+  - "/assets/css/tags.css"
 ---
 
 <div class="all-publications container mt-5">
@@ -28,6 +29,13 @@ custom_css:
             </a>
           </h5>
           <p class="card-text mb-3 flex-grow-1">{{ post.description }}</p>
+          {% if post.tags %}
+          <div class="post-tags">
+            {% for tag in post.tags %}
+              <span class="post-tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+          {% endif %}
           <div class="mt-auto">
             <a href="{{ post.url | prepend: site.baseurl }}" class="btn-read-more">
               Ler mais
