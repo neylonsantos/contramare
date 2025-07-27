@@ -2,8 +2,9 @@
 title: "Você ainda não me viu com raiva"
 description: "Sua raiva disfarçada de aviso é, muitas vezes, um sinal do seu descontrole."
 date: 2025-01-15 07:00:00 -0300
-image: 'feature_image.jpg'
+image: 'featured_image.jpg'
 categories: Reflexões
+tags:
 ---
 
 "Você ainda não me viu nervoso", "Não queira me ver com raiva" Você já deve ter ouvido essas frases de alguém, certo?
