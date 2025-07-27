@@ -174,7 +174,7 @@ contramare/
 │   │   ├── page.html           # Páginas estáticas
 │   │   ├── post.html           # Posts individuais
 │   │   ├── quotes.html         # Layout para frases
-│   │   └── category_page.html  # Páginas de categoria
+│   │   └── category.html  # Páginas de categoria
 │   │
 │   ├── _posts/                  # Conteúdo do blog
 │   │   ├── quotes/             # Frases e citações

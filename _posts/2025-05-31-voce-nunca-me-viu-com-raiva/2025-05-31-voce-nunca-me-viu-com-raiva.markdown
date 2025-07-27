@@ -1,9 +1,8 @@
 ---
-layout: post
 title: "Você ainda não me viu com raiva"
 description: "Sua raiva disfarçada de aviso é, muitas vezes, um sinal do seu descontrole."
 date: 2025-01-15 07:00:00 -0300
-image: '/assets/uploads/post_images/voce_ainda_nao_me_viu_com_raiva.jpg'
+image: 'feature_image.jpg'
 categories: Reflexões
 ---
 
