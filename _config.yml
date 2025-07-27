@@ -1,30 +1,10 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-#
-# If you need help with YAML syntax, here are some quick references for you:
-# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
-# https://learnxinyminutes.com/docs/yaml/
-#
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-
 title: Contramaré
 email: contato@contramare.com.br
-description: >- # this means to ignore newlines until "baseurl:"
+description: >-
   Fácil é seguir o fluxo, difícil é ir contra a maré
 domain: contramare.com.br
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://contramare.com.br" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: ""
+url: "https://contramare.com.br"
 
 # SEO and Social Media
 author: Neylon Santos
@@ -33,30 +13,18 @@ timezone: America/Sao_Paulo
 
 # Modular Features Configuration
 features:
-  quotes_page: false
   blog_page: true
   contact_page: true
   about_page: true
 
 # Mapeamento de categorias para funcionalidades
 category_feature_map:
-  "Frases": "quotes_page"
   "Blog": "blog_page"
   "Sobre": "about_page"
 
 permalink: /:categories/:title/
 
-collections:
-  category:
-    output: true
-
 defaults:
-  -
-    scope:
-      path: ""
-      type: category
-    values:
-      layout: "category_page"
   -
     scope:
       path: ""
@@ -133,14 +101,7 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
+# Exclude from processing
 exclude:
   - .sass-cache/
   - .jekyll-cache/

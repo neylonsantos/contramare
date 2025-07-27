@@ -128,14 +128,6 @@
     <link rel="stylesheet" href="{{ "/assets/css/post.css" | prepend: site.baseurl }}">
   {% endif %}
 
-  {% if page.layout == 'quotes' %}
-    <link rel="stylesheet" href="{{ "/assets/css/quote.css" | prepend: site.baseurl }}">
-  {% endif %}
-
-  {% if page.layout == 'category_page' %}
-    <link rel="stylesheet" href="{{ "/assets/css/categories.css" | prepend: site.baseurl }}">
-  {% endif %}
-
   <!-- CSS customizado específico da página (se especificado no front matter) -->
   {% if page.custom_css %}
     {% for css_file in page.custom_css %}
