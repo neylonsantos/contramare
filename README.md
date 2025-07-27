@@ -46,7 +46,7 @@ O **Contramaré** é mais que um blog — é um ponto de resistência intelectua
 
 ### 🏗️ Arquitetura Avançada
 - **Sistema modular** com ativação/desativação de funcionalidades
-- **Carregamento condicional de CSS** baseado em layout e contexto
+- **Carregamento condicional de CSS** baseado em layout
 - **Filtragem automática de conteúdo** por categoria
 - **Otimizações de performance** para carregamento rápido
 
@@ -68,13 +68,13 @@ O **Contramaré** é mais que um blog — é um ponto de resistência intelectua
 ## 🛠️ Tecnologias
 
 ### Core
-- **Jekyll** - Gerador de sites estáticos
+- **Jekyll 4.4.1** - Gerador de sites estáticos
 - **Ruby** - Linguagem base
 - **Liquid** - Template engine
 
 ### Frontend
-- **Bootstrap 5** - Framework CSS responsivo
-- **Bootstrap Icons** - Biblioteca de ícones
+- **Bootstrap 5.3.6** - Framework CSS responsivo
+- **Bootstrap Icons 1.11.3** - Biblioteca de ícones
 - **CSS customizado** com carregamento condicional
 - **JavaScript vanilla** para interações
 
@@ -83,10 +83,11 @@ O **Contramaré** é mais que um blog — é um ponto de resistência intelectua
 - **jekyll-sitemap** - Geração de sitemap
 - **jekyll-feed** - Feed RSS
 - **jekyll-redirect-from** - Redirecionamentos
+- **jekyll-postfiles** - Gerenciamento de arquivos de posts
 - **jekyll-compress-images** - Otimização de imagens
 
 ### Plugins Customizados
-- **feature_filter.rb** - Filtro de funcionalidades modulares
+- **feature_filter.rb** - Filtro de funcionalidades modulares otimizado
 - **latin_slugify.rb** - Geração de URLs amigáveis
 
 ---
@@ -118,18 +119,12 @@ cd contramare
 bundle install
 ```
 
-3. **Configure as variáveis de ambiente** (opcional)
-```bash
-# Crie um arquivo .env para variáveis locais
-cp .env.example .env
-```
-
-4. **Execute o servidor de desenvolvimento**
+3. **Execute o servidor de desenvolvimento**
 ```bash
 bundle exec jekyll serve
 ```
 
-5. **Acesse o site**
+4. **Acesse o site**
 ```
 http://localhost:4000
 ```
@@ -166,27 +161,43 @@ contramare/
 │   │   ├── head.html           # Meta tags e SEO
 │   │   ├── header.html         # Navegação principal
 │   │   ├── footer.html         # Rodapé
+│   │   ├── apresentation.html  # Apresentação da home
 │   │   ├── last_publications.html  # Posts recentes
+│   │   ├── post_details.html   # Detalhes do post
 │   │   └── content_unavailable.html # Página de indisponível
 │   │
 │   ├── _layouts/                # Templates de página
 │   │   ├── default.html        # Layout base
 │   │   ├── page.html           # Páginas estáticas
-│   │   ├── post.html           # Posts individuais
-│   │   ├── quotes.html         # Layout para frases
-│   │   └── category.html  # Páginas de categoria
+│   │   └── post.html           # Posts individuais
 │   │
 │   ├── _posts/                  # Conteúdo do blog
-│   │   ├── quotes/             # Frases e citações
 │   │   └── _template-post-seo.md  # Template para novos posts
 │   │
-│   ├── _category/               # Páginas de categoria
 │   ├── _data/                   # Dados estruturados
+│   │   └── seo.yml             # Configurações de SEO
+│   │
 │   └── _plugins/                # Plugins customizados
+│       ├── feature_filter.rb   # Sistema de funcionalidades modulares
+│       ├── latin_slugify.rb    # URLs amigáveis
+│       └── README_FEATURE_FILTER.md # Documentação do plugin
 │
 ├── 🎨 Assets
 │   ├── assets/css/              # Estilos CSS modulares
+│   │   ├── header.css          # Navegação
+│   │   ├── main.css            # Estilos base
+│   │   ├── footer.css          # Rodapé
+│   │   ├── index.css           # Página inicial
+│   │   ├── post.css            # Posts individuais
+│   │   ├── blog.css            # Página do blog
+│   │   ├── about.css           # Página sobre
+│   │   └── contact.css         # Página de contato
+│   │
 │   ├── assets/js/               # JavaScript customizado
+│   │   ├── addons.js           # Funcionalidades gerais
+│   │   ├── contact.js          # Página de contato
+│   │   └── post-enhancements.js # Melhorias para posts
+│   │
 │   ├── assets/base/             # Logos e imagens base
 │   └── assets/uploads/          # Upload de conteúdo
 │
@@ -194,8 +205,7 @@ contramare/
 │   ├── pages/                   # Páginas estáticas
 │   │   ├── about.html          # Sobre/Manifesto
 │   │   ├── blog.html           # Lista de posts
-│   │   ├── contact.html        # Contato
-│   │   └── quotes.html         # Frases
+│   │   └── contact.html        # Contato
 │   ├── index.html              # Página inicial
 │   └── 404.html                # Página de erro
 │
@@ -207,37 +217,44 @@ contramare/
 
 ## ⚙️ Sistema Modular
 
-O Contramaré possui um **sistema modular único** que permite ativar/desativar funcionalidades inteiras do site.
+O Contramaré possui um **sistema modular otimizado** que permite ativar/desativar funcionalidades inteiras do site com alta performance.
 
 ### Configuração em `_config.yml`
 
 ```yaml
 # Controle de funcionalidades
 features:
-  quotes_page: false    # Página de frases
   blog_page: true       # Página do blog
   contact_page: true    # Página de contato
   about_page: true      # Página sobre
 
 # Mapeamento categoria → funcionalidade
 category_feature_map:
-  "Frases": "quotes_page"
   "Blog": "blog_page"
-  "Reflexões": "blog_page"
+  "Sobre": "about_page"
 ```
+
+### Como Funciona
+
+O sistema utiliza **Jekyll Hooks** para máxima performance:
+
+1. **Durante o build**, o plugin processa todos os posts
+2. **Pre-computa** quais categorias estão ativas
+3. **Filtra posts** baseado nas features ativas
+4. **Disponibiliza dados** pre-computados para templates
 
 ### O que acontece quando uma funcionalidade está INATIVA:
 
 - ❌ **Link removido** do menu de navegação
 - ❌ **Posts da categoria ocultos** em todas as listas
-- ❌ **Páginas mostram** "em desenvolvimento"
+- ❌ **Páginas mostram** "conteúdo indisponível"
 - ❌ **Posts individuais** exibem mensagem de indisponibilidade
 
 ### Vantagens do Sistema
 
+✅ **Performance otimizada** - processamento apenas no build
 ✅ **Controle granular** de conteúdo
 ✅ **Desenvolvimento incremental** de funcionalidades
-✅ **Teste A/B** fácil de implementar
 ✅ **Manutenção simplificada**
 ✅ **Deploy seletivo** de features
 
@@ -258,16 +275,8 @@ footer.css    # Rodapé
 
 #### CSS por Layout
 ```css
-post.css      # Layout: post
-quote.css     # Layout: quotes
-categories.css # Layout: category_page
-```
-
-#### CSS por Contexto
-```css
-blog.css      # URLs com /blog ou /category
-about.css     # Página específica
-contact.css   # Página de contato
+index.css     # Layout: default (página inicial)
+post.css      # Layout: post (posts individuais)
 ```
 
 #### CSS Customizado por Página
@@ -277,16 +286,19 @@ layout: page
 custom_css:
   - "/assets/css/animations.css"
   - "/assets/css/special-layout.css"
+custom_js:
+  - "/assets/js/special-functions.js"
 ---
 ```
 
 ### Outras Otimizações
 
-- 🚀 **Compressão SASS** automática
+- 🚀 **Compressão SASS** automática (`style: compressed`)
 - 🖼️ **Otimização de imagens** via plugin
-- 📱 **Lazy loading** implementado
+- 📱 **Preload de recursos** críticos
 - 🔒 **Headers de segurança** configurados
-- 📊 **Preload de recursos** críticos
+- 📊 **Google Analytics 4** otimizado
+- ⚡ **CDN Bootstrap** para performance
 
 ---
 
@@ -295,20 +307,46 @@ custom_css:
 ### SEO Técnico Implementado
 
 ✅ **Meta tags estruturadas** com jekyll-seo-tag
-✅ **Schema.org markup** (JSON-LD e Microdata)
+✅ **Schema.org markup** (JSON-LD) automático
 ✅ **Sitemap.xml** automático
 ✅ **Feed RSS** otimizado
 ✅ **Canonical URLs** para evitar duplicação
 ✅ **Rich snippets** para posts
-✅ **Breadcrumb navigation**
 ✅ **Open Graph** e Twitter Cards
+✅ **Dados estruturados** em `_data/seo.yml`
+
+### Configurações SEO Avançadas
+
+O arquivo `_data/seo.yml` contém:
+
+```yaml
+# Imagem padrão para compartilhamento social
+default_image: "/assets/base/contramare-social-image.jpg"
+
+# Informações da organização
+organization:
+  name: "Contramaré"
+  url: "https://contramare.com.br"
+  logo: "/assets/base/contramare-icon.png"
+
+# Informações do autor
+author:
+  name: "Neylon Santos"
+  bio: "I'm a christian, software engineer, writer, and creator."
+
+# Configurações de categorias
+categories:
+  Reflexões:
+    description: "Artigos provocativos que desafiam o senso comum."
+    color: "#2c3e50"
+```
 
 ### Analytics e Monitoramento
 
-- **Google Analytics 4** configurado
+- **Google Analytics 4** (G-XXXXXXXXXX)
 - **Google Search Console** preparado
 - **Performance tracking** implementado
-- **Error tracking** na página 404
+- **Structured data** para rich results
 
 ### Template SEO para Posts
 
@@ -317,7 +355,7 @@ custom_css:
 layout: post
 title: "Título otimizado (máx 60 chars)"
 description: "Meta descrição atrativa (150-160 chars)"
-image: '/assets/uploads/post_images/imagem-1200x630.jpg'
+image: '/assets/uploads/feature_image.jpg'
 categories: Reflexões
 tags: [reflexão, crescimento, autocontrole]
 date: 2025-01-15 07:00:00 -0300
@@ -337,52 +375,54 @@ Artigos provocativos que desafiam comportamentos normalizados:
 - Preguiça intelectual
 - Crescimento pessoal através do desconforto
 
-#### 💭 **Frases e Citações** (Funcionalidade Modular)
-Sistema especial para frases marcantes com:
-- Layout dedicado (`quotes`)
-- Metadata específica (autor, contexto)
-- Filtragem automática por categoria
+### Estrutura de Posts
+
+Os posts seguem uma estrutura organizada:
+```
+_posts/
+└── YYYY-MM-DD-titulo-do-post/
+    ├── YYYY-MM-DD-titulo-do-post.markdown
+    └── feature_image.jpg
+```
 
 ### Adicionando Novo Conteúdo
 
 #### Novo Post
 ```bash
-# 1. Crie o arquivo
-touch _posts/YYYY-MM-DD-titulo-do-post.markdown
+# 1. Crie o diretório do post
+mkdir _posts/$(date +%Y-%m-%d)-titulo-do-post
 
 # 2. Use o template SEO
-cp _posts/_template-post-seo.md _posts/YYYY-MM-DD-seu-post.markdown
+cp _posts/_template-post-seo.md _posts/$(date +%Y-%m-%d)-titulo-do-post/$(date +%Y-%m-%d)-titulo-do-post.markdown
 
-# 3. Edite o conteúdo
+# 3. Adicione imagem destacada
+# Coloque a imagem em: _posts/$(date +%Y-%m-%d)-titulo-do-post/feature_image.jpg
+
 # 4. Teste localmente
 bundle exec jekyll serve --drafts
-```
-
-#### Nova Frase
-```yaml
----
-layout: quotes
-title: "Título da Reflexão"
-quote: "Texto da frase inspiradora"
-quote_author: "Autor da Frase"
-categories: Frases
-date: 2025-01-15
----
-
-Contexto adicional ou reflexão sobre a frase...
 ```
 
 ---
 
 ## 🚀 Deploy
 
-### GitHub Pages (Automático)
-O site é **automaticamente publicado** a cada push na branch principal:
+### Configurações de Produção
+
+```yaml
+# _config.yml
+url: "https://contramare.com.br"
+baseurl: ""
+domain: contramare.com.br
+google_analytics: G-XXXXXXXXXX
+```
+
+### Deploy Automático
+O site é **automaticamente publicado** a cada push:
 
 ```bash
 git add .
 git commit -m "Novo post: Título do Post"
-git push origin main
+git push origin feat/ctmr/refactor-and-improve-project
 ```
 
 ### Deploy Manual
@@ -392,16 +432,6 @@ bundle exec jekyll build
 
 # Upload da pasta _site para seu servidor
 rsync -avz _site/ user@server:/path/to/site/
-```
-
-### Configurações de Produção
-
-```yaml
-# _config.yml
-url: "https://contramare.com.br"
-baseurl: ""
-domain: contramare.com.br
-google_analytics: G-RQ21K77JYG
 ```
 
 ---
@@ -447,8 +477,7 @@ Este projeto está sob a **Licença MIT**. Veja o arquivo [LICENSE](LICENSE) par
 - 🌐 **Site:** [contramare.com.br](https://contramare.com.br)
 - 📧 **Email:** contato@contramare.com.br
 - 💼 **GitHub:** [@neylonsantos](https://github.com/neylonsantos)
-- 🐦 **Twitter:** [@contramare_page](https://twitter.com/contramare_blog)
-- 🔗 **Mais:** [Neylon Santos](https://neylon.xyz)
+- 🔗 **Pessoal:** [neylon.xyz](https://neylon.xyz)
 
 ---
 

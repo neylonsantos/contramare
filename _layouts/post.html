@@ -1,66 +1,60 @@
-{% include head.html %}
+---
+layout: default
+---
 
-<body>
+{% assign post_category = page.categories | first %}
+{% assign category_active = post_category | category_is_active %}
+{% if category_active %}
+  <main class="main container" role="main">
+    <article itemscope itemtype="https://schema.org/BlogPosting">
 
-  {% include header.html %}
+      <!-- Microdata para SEO -->
+      <meta itemprop="author" content="{{ site.author }}">
+      <meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">
+      <meta itemprop="dateModified" content="{{ page.date | date_to_xmlschema }}">
+      <meta itemprop="publisher" content="{{ site.title }}">
+      <meta itemprop="mainEntityOfPage" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
+      {% if page.image %}
+        <meta itemprop="image" content="{{ page.image | prepend: site.baseurl | prepend: site.url }}">
+      {% endif %}
 
-  {% assign post_category = page.categories | first %}
-  {% assign category_active = post_category | category_is_active %}
-  {% if category_active %}
-    <main class="main container" role="main">
-      <article itemscope itemtype="https://schema.org/BlogPosting">
+      {% include post_details.html %}
 
-        <!-- Microdata para SEO -->
-        <meta itemprop="author" content="{{ site.author }}">
-        <meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">
-        <meta itemprop="dateModified" content="{{ page.date | date_to_xmlschema }}">
-        <meta itemprop="publisher" content="{{ site.title }}">
-        <meta itemprop="mainEntityOfPage" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
-        {% if page.image %}
-          <meta itemprop="image" content="{{ page.image | prepend: site.baseurl | prepend: site.url }}">
-        {% endif %}
+      <div itemprop="articleBody">
+        {{ content }}
+      </div>
 
-        {% include post_details.html %}
-
-        <div itemprop="articleBody">
-          {{ content }}
-        </div>
-
-        <!-- Breadcrumb schema for better navigation -->
-        <nav aria-label="breadcrumb" style="margin-top: 2rem;">
-          <script type="application/ld+json">
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "{{ site.url }}"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "{{ page.categories | first }}",
-                "item": "{{ site.url }}/category/{{ page.categories | first | slugify: 'latin' }}"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "{{ page.title }}",
-                "item": "{{ page.url | prepend: site.baseurl | prepend: site.url }}"
-              }
-            ]
-          }
-          </script>
-        </nav>
-      </article>
-    </main>
-  {% else %}
-    {% include content_unavailable.html %}
-  {% endif %}
-
-  {% include footer.html %}
-</body>
-</html>
+      <!-- Breadcrumb schema for better navigation -->
+      <nav aria-label="breadcrumb" style="margin-top: 2rem;">
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "{{ site.url }}"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "{{ page.categories | first }}",
+              "item": "{{ site.url }}/category/{{ page.categories | first | slugify: 'latin' }}"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "{{ page.title }}",
+              "item": "{{ page.url | prepend: site.baseurl | prepend: site.url }}"
+            }
+          ]
+        }
+        </script>
+      </nav>
+    </article>
+  </main>
+{% else %}
+  {% include content_unavailable.html %}
+{% endif %}
