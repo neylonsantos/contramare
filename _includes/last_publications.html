@@ -3,7 +3,7 @@
 
   <hr class="mb-5">
 
-  {% assign active_posts = site.data.filtered_posts %}
+  {% assign active_posts = site.data.filtered_posts | sort: 'date' | reverse %}
   {% for post in active_posts limit:5%}
   <div class="card">
     <a href="{{ post.url | prepend: site.baseurl }}" class="text-decoration-none text-dark">
