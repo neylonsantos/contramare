@@ -1,0 +1,100 @@
+
+/* ================================================
+  POST TAGS - CLEAN BADGE DESIGN
+================================================ */
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-top: 0.5rem;
+}
+
+.post-tag {
+  font-size: 0.65rem;
+  color: #2789ce;
+  background: rgba(39, 137, 206, 0.06);
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(39, 137, 206, 0.15);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+}
+
+.post-tag:hover {
+  background: rgba(39, 137, 206, 0.1);
+  color: #1e6bb8;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(39, 137, 206, 0.1);
+}
+
+/* Tags para o template last_publications (mais compactas) */
+.post-tags-compact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.post-tags-compact .post-tag {
+  font-size: 0.6rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 8px;
+}
+
+/* ================================================
+RESPONSIVE ADJUSTMENTS FOR TAGS
+================================================ */
+@media (max-width: 768px) {
+  .post-tags {
+    gap: 0.25rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .post-tag {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.4rem;
+  }
+
+  .post-tags-compact .post-tag {
+    font-size: 0.55rem;
+    padding: 0.125rem 0.35rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .post-tags {
+    gap: 0.2rem;
+  }
+
+  .post-tag {
+    font-size: 0.55rem;
+    padding: 0.125rem 0.35rem;
+  }
+}
+
+/* Accessibility para tags */
+@media (prefers-reduced-motion: reduce) {
+  .post-tag {
+    transition: none;
+  }
+
+  .post-tag:hover {
+    transform: none;
+  }
+}
+
+/* High contrast para tags */
+@media (prefers-contrast: high) {
+  .post-tag {
+    border: 1px solid #2789ce;
+    background: rgba(39, 137, 206, 0.1);
+  }
+
+  .post-tag:hover {
+    background: #2789ce;
+    color: white;
+  }
+}

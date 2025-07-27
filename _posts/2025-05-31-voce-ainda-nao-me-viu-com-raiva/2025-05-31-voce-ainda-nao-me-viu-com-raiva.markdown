@@ -4,7 +4,7 @@ description: "Sua raiva disfarçada de aviso é, muitas vezes, um sinal do seu d
 date: 2025-01-15 07:00:00 -0300
 image: 'featured_image.jpg'
 categories: Reflexões
-tags:
+tags: [Comportamento, Disciplina, Atemporal]
 ---
 
 "Você ainda não me viu nervoso", "Não queira me ver com raiva" Você já deve ter ouvido essas frases de alguém, certo?

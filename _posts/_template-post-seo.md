@@ -5,7 +5,7 @@ description: "Meta descrição atrativa e descritiva de 150-160 caracteres que r
 date: 2025-01-15 07:00:00 -0300
 image: '/assets/uploads/post_images/nome-da-imagem-otimizada.jpg'
 categories: [Reflexões]
-tags: [tag1, tag2, tag3, tag4]  # máximo 5 tags relevantes
+tags: [tag1, tag2, tag3, tag4]  # máximo 5 tags relevantes separadas por vírgula
 author: Neylon Santos
 keywords: "palavra-chave-principal, palavra-chave-secundária, termo-relacionado"
 reading_time: 5  # tempo estimado de leitura em minutos
