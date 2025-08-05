@@ -15,6 +15,3 @@ Disallow: /.jekyll-cache/
 # Allow important assets
 Allow: /assets/uploads/
 Allow: /assets/base/
-
-# Crawl delay (optional - remove if causing issues)
-Crawl-delay: 1
