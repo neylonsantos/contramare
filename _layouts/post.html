@@ -18,6 +18,36 @@ layout: default
         <meta itemprop="image" content="{{ page.image | prepend: site.baseurl | prepend: site.url }}">
       {% endif %}
 
+      <!-- JSON-LD: BlogPosting -->
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "{{ page.url | prepend: site.baseurl | prepend: site.url }}"
+        },
+        "headline": "{{ page.title | strip_html | escape }}",
+        "description": "{{ page.description | default: site.description | strip_html | escape }}",
+        "image": ["{{ page.image | default: site.seo.default_image | prepend: site.baseurl | prepend: site.url }}"],
+        "author": {
+          "@type": "Person",
+          "name": "{{ site.author }}"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "{{ site.title }}",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "{{ '/assets/base/contramare-icon.png' | prepend: site.baseurl | prepend: site.url }}"
+          }
+        },
+        "datePublished": "{{ page.date | date_to_xmlschema }}",
+        "dateModified": "{{ page.date | date_to_xmlschema }}"
+      }
+      </script>
+      <!-- fim JSON-LD -->
+
       {% include post_details.html %}
 
       <div class="post-content" itemprop="articleBody">
