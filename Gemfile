@@ -3,7 +3,6 @@ source "https://rubygems.org"
 gem "jekyll", "~> 4.4.1"
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.16"
-  gem 'jekyll-postfiles'
 end
 
 platforms :mingw, :x64_mingw, :mswin, :jruby do

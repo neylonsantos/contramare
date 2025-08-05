@@ -2,7 +2,7 @@
 title: "Você ainda não me viu com raiva"
 description: "Sua raiva disfarçada de aviso é, muitas vezes, um sinal do seu descontrole."
 date: 2025-05-15 10:00:00 -0300
-image: 'featured_image.jpg'
+image: "/assets/uploads/posts/2025-05-31-voce-ainda-nao-me-viu-com-raiva/featured.jpg"
 categories: Reflexões
 tags: [Comportamento, Disciplina, Atemporal]
 ---

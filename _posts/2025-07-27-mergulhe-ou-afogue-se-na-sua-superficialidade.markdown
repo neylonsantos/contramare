@@ -2,7 +2,7 @@
 title: "Mergulhe ou Afogue-se na Sua Superficialidade"
 description: "A vida no piloto automático é um pântano confortável. A profundidade é o único antídoto."
 date: 2025-07-27 17:00:00 -0300
-image: 'featured_image.png'
+image: "/assets/uploads/posts/2025-07-27-mergulhe-ou-afogue-se-na-sua-superficialidade/featured.png"
 categories: Reflexões
 tags: [Comportamento, Disciplina, Atemporal]
 ---
