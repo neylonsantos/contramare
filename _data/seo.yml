@@ -1,5 +1,5 @@
 # SEO Configuration Data
-default_image: "/assets/base/contramare-social-image.jpg"
+default_image: "/assets/base/contramare-icon.png"
 organization:
   name: "Contramaré"
   url: "https://contramare.com.br"
