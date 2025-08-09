@@ -6,6 +6,9 @@ domain: contramare.com.br
 baseurl: ""
 url: "https://contramare.com.br"
 
+vars:
+  logo: "/assets/base/contramare-line.png"
+
 # SEO and Social Media
 author: Neylon Santos
 lang: pt-BR
@@ -41,8 +44,6 @@ defaults:
       path: "index.html"
     values:
       image: "/assets/base/contramare-icon.png"
-      seo:
-        type: WebSite
 
 # Build settings
 plugins:
@@ -53,23 +54,26 @@ plugins:
 
 # SEO Plugin Configuration
 seo:
-  type: Person
-  name: Neylon Santos
+  type: Organization
+  name: "Contramaré"
+  url: "https://contramare.com.br"
+  logo: "https://contramare.com.br/assets/base/contramare-icon.png"
+  same_as:
+    - "https://x.com/contramare_blog"
+    - "https://instagram.com/contramare_blog"
   links:
-    - https://neylon.xyz
+    - https://contramare.com.br
 
 # Social Media
 social:
   name: Contramaré
   links:
     - https://contramare.com.br
-    - https://x.com/contramare_page
+    - https://x.com/contramare_blog
+    - https://instagram.com/contramare_blog
 
 # Google Analytics
 google_analytics: G-RQ21K77JYG
-
-# Google Search Console
-google_site_verification:
 
 # Feed Configuration (jekyll-feed plugin)
 feed:
@@ -81,7 +85,7 @@ feed:
 
 # Image optimization
 compress_images:
-  images_path: "**/*.{gif,png,jpg,jpeg,svg}"
+  images_path: "assets/**/*.{gif,png,jpg,jpeg,svg}"
 
 # Performance and optimization
 sass:

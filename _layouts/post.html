@@ -57,30 +57,29 @@ layout: default
       <!-- Breadcrumb schema for better navigation -->
       <nav aria-label="breadcrumb" style="margin-top: 2rem;">
         <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Home",
-              "item": "{{ site.url }}"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "{{ page.categories | first }}",
-              "item": "{{ site.url }}/category/{{ page.categories | first | slugify: 'latin' }}"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": "{{ page.title }}",
-              "item": "{{ page.url | prepend: site.baseurl | prepend: site.url }}"
-            }
-          ]
-        }
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "{{ site.url }}"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "{{ site.url }}/blog/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{ page.title }}",
+                "item": "{{ page.url | prepend: site.url }}"
+              }
+            ]
+          }
         </script>
       </nav>
     </article>

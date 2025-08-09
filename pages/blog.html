@@ -1,14 +1,39 @@
 ---
 layout: default
 title: "Blog"
+description: "Artigos provocativos que desafiam o senso comum. Reflexões sobre desenvolvimento pessoal, maturidade e crescimento consciente."
 permalink: /blog/
 custom_css:
   - "/assets/css/blog.css"
   - "/assets/css/tags.css"
 ---
 
-<div class="all-publications container mt-5">
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "{{ page.title }}",
+    "description": "{{ page.description }}",
+    "url": "{{ page.url | prepend: site.url }}",
+    "mainEntity": {
+      "@type": "Blog",
+      "name": "{{ site.title }} - Blog",
+      "description": "{{ page.description }}",
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{ site.title }}",
+        "logo": "{{ site.vars.logo | prepend: site.url }}"
+      }
+    }
+  }
+  </script>
+
+<div class="all-publications container">
   <div class="row g-4">
+    <header class="title-page">
+      <h1>Blog</h1>
+      <p class="subtitle-page">Todos os artigos</p>
+    </header>
     {% assign active_posts = site.data.filtered_posts | sort: 'date' | reverse %}
     {% for post in active_posts %}
     <div class="col-12 col-md-6 col-lg-4">

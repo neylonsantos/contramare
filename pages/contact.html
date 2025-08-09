@@ -2,7 +2,7 @@
 layout: default
 permalink: /contact/
 title: "Contato"
-description: "Entre em contato conosco - Contramaré"
+description: "Entre em contato com o Contramaré. Envie sugestões, dúvidas ou compartilhe seus pensamentos sobre nossas reflexões."
 include_faq: false
 custom_css:
   - "/assets/css/contact.css"
@@ -10,11 +10,30 @@ custom_js:
   - "/assets/js/contact.js"
 ---
 
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "{{ page.title }}",
+    "description": "{{ page.description }}",
+    "url": "{{ page.url | prepend: site.url }}",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "{{ site.title }}",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "{{ site.email }}",
+        "contactType": "customer service"
+      }
+    }
+  }
+  </script>
+
 {% if site.features.contact_page %}
 <div class="contato-container">
-  <header class="contato-header">
-    <h1>Contato</h1>
-    <p class="contato-subtitle">Tem algo a falar?</p>
+  <header class="title-page">
+    <h1>Entre em Contato</h1>
+    <p class="subtitle-page">Tem algo a falar?</p>
   </header>
 
   <main class="contato-content">
