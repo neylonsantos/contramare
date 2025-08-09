@@ -3,9 +3,11 @@
   <div class="sub-header container pt-4 pb-3 d-flex flex-column align-items-center">
 
     {% if page.url == '/blog/' or page.url == '/contact/' %}
-      <div class="header-logo">
-        <img src="/assets/base/contramare-line.png" alt="header-logo" loading="lazy">
-      </div>
+    <div class="header-logo">
+      <a href="{{ site.baseurl }}/" aria-label="Contramaré">
+        <img src="{{ '/assets/base/contramare-line.png' | prepend: site.baseurl }}" alt="Contramaré" loading="lazy">
+      </a>
+    </div>
     {% endif %}
 
     <button onclick="show()" class="menu-btn" type="button" aria-label="Abrir menu">
@@ -20,18 +22,18 @@
         </li>
         {% if site.features.contact_page %}
         <li class="nav-item">
-          <a class="nav-link" href="{{ site.baseurl }}/contact">CONTATO</a>
+          <a class="nav-link" href="{{ site.baseurl }}/contact/">CONTATO</a>
         </li>
         {% endif %}
         {% if site.features.blog_page %}
         <li class="nav-item">
-          <a class="nav-link" href="{{ site.baseurl }}/blog">BLOG</a>
+          <a class="nav-link" href="{{ site.baseurl }}/blog/">BLOG</a>
         </li>
         {% endif %}
 
         {% if site.features.about_page %}
         <li class="nav-item">
-          <a class="nav-link" href="{{ site.baseurl }}/about">SOBRE</a>
+          <a class="nav-link" href="{{ site.baseurl }}/about/">SOBRE</a>
         </li>
         {% endif %}
       </ul>

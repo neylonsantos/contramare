@@ -2,10 +2,27 @@
 layout: default
 permalink: /about/
 title: "Sobre"
-description: "Conheça a história e missão do Contramaré."
+description: "Conheça a história e missão do Contramaré. Questionamos hábitos mentais, combatemos mediocridade e provocamos reflexão crítica."
 custom_css:
   - "/assets/css/about.css"
 ---
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "{{ page.title }}",
+    "description": "{{ page.description }}",
+    "url": "{{ page.url | prepend: site.url }}",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "{{ site.title }}",
+      "description": "{{ site.description }}",
+      "url": "{{ site.url }}",
+      "logo": "{{ site.vars.logo | prepend: site.url }}"
+    }
+  }
+  </script>
 
 <main class="about-container">
   <!-- Article Header -->
@@ -21,6 +38,7 @@ custom_css:
 
   <!-- Article Content -->
   <article class="article-content">
+    <h1 class="text-center">Sobre o Contramaré</h1>
     <div class="content-section">
       <p>
         Vivemos em tempos onde o óbvio precisa ser dito. Onde o errado se tornou hábito e a mediocridade é celebrada como autenticidade, o egoísmo travestido de liberdade. Navegamos na correnteza do consenso, no fluxo macio do que é fácil, do que é repetido, do que é aceito em um piscar de olhos.
