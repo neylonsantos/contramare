@@ -17,7 +17,7 @@ A maioria se afunda nesse automatismo por escolha. É o comodismo disfarçado de
 
 E se você já tentou ir além com uma dessas mentes, conhece a frustração. É como tentar cavar um poço em uma laje de concreto. A conversa bate no raso e volta, porque a mente do outro não consegue, ou não quer, penetrar a superfície das coisas.
 
-**O Confronto Necessário**
+## O confronto necessário
 
 A maioria se acomoda nesse pântano confortável, acreditando que a profundidade é para filósofos ou para quem "tem tempo".  Mentira. Profundidade é para quem tem coragem. Coragem de desligar o ruído externo para encarar o barulho interno. Coragem de fazer as perguntas difíceis.
 
@@ -29,7 +29,7 @@ Quando foi a última vez que você:
 
 Viver na superfície é transferir a responsabilidade. É culpar a "correria" pela falta de reflexão. É se vitimizar como produto do meio, em vez de se assumir como arquiteto das próprias reações.
 
-**A Saída é Para Dentro (e Para Baixo)**
+## A saída é para dentro (e para baixo)
 
 Não há fórmula mágica para sair do raso. A saída é um mergulho, e mergulhar exige fôlego, decisão e a aceitação do desconforto.
 
