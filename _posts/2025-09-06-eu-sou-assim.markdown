@@ -1,5 +1,5 @@
 ---
-title: "Eu Sou Assim"
+title: "Eu sou assim"
 description: "Por trás da frase que você usa para se definir, se esconde a covardia de se transformar."
 date: 2025-09-06 07:00:00 -0300
 image: "/assets/uploads/posts/2025-09-06-eu-sou-assim/featured.png"
