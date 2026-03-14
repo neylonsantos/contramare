@@ -1,4 +1,4 @@
-name: Testar Conexão SSH
+name: Test SSH Connection
 
 on:
   workflow_dispatch:
@@ -7,16 +7,20 @@ jobs:
   test-ssh-connection:
     runs-on: ubuntu-latest
     steps:
-      - name: Testar conexão SSH
+      - name: Test SSH connection
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script:
-            echo "Conexão bem-sucedida na porta correta!"
-            echo "Usuário conectado:"
+          script: |
+            echo "--- STARTING ENVIRONMENT TEST ---"
+            echo "Successful connection on the correct port!"
+            echo "Logged in user:"
             whoami
-            echo "Diretório atual:"
+            echo "Current directory (PWD):"
             pwd
+            echo "Listing basic root content:"
+            ls -la
+            echo "--- TEST FINISHED ---"
