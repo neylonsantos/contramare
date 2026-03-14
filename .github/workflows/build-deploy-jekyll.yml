@@ -1,5 +1,5 @@
 # Nome do Workflow
-name: Deploy Jekyll para Servidor
+name: Jekyll Build e Deployment
 
 # Gatilhos que iniciam o workflow
 on:
@@ -17,7 +17,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.4.5'
+          ruby-version: '3.4.8'
           bundler-cache: true
 
       # Validação das dependências
@@ -29,7 +29,7 @@ jobs:
           fi
           bundle install --jobs 4 --retry 3
 
-      - name: Build do site com Jekyll
+      - name: Inicia o Jekyll Build
         run: |
           bundle exec jekyll build
           # Verifica se o build foi bem-sucedido
@@ -62,8 +62,9 @@ jobs:
           script: |
             set -e  # Para em caso de erro
 
-            TARGET_DIR="/home/neylon/contramare_com_br"
-            BACKUP_DIR="/home/neylon/contramare_com_br_backup_$(date +%Y%m%d_%H%M%S)"
+            TARGET_DIR="/var/www/vhosts/contramare.com.br/httpdocs"
+            BACKUP_BASE_DIR="/var/www/vhosts/contramare.com.br/site_backups"
+            BACKUP_DIR="${BACKUP_BASE_DIR}/backup_$(date +%Y%m%d_%H%M%S)"
 
             echo "🚀 Iniciando deploy em ${TARGET_DIR}..."
 
@@ -73,10 +74,11 @@ jobs:
               exit 1
             fi
 
-            # Cria diretório de destino se não existir
+            # Cria diretórios se não existirem
             mkdir -p ${TARGET_DIR}
+            mkdir -p ${BACKUP_BASE_DIR}
 
-            # Backup mais robusto
+            # Backup do build atual
             if [ "$(ls -A ${TARGET_DIR} 2>/dev/null | head -1)" ]; then
               echo "📦 Criando backup em ${BACKUP_DIR}..."
               cp -r ${TARGET_DIR} ${BACKUP_DIR}
@@ -85,7 +87,7 @@ jobs:
             # Limpa diretório atual
             echo "🧹 Limpando diretório atual..."
             rm -rf ${TARGET_DIR}/*
-            rm -rf ${TARGET_DIR}/.[!.]*
+            rm -rf ${TARGET_DIR}/.[!.]* 2>/dev/null || true
 
             # Extrai novos arquivos
             echo "📂 Extraindo novos arquivos..."
@@ -101,18 +103,18 @@ jobs:
               exit 1
             fi
 
-            # Ajusta permissões
+            # Ajusta permissões exigidas pelo servidor web
             echo "🔐 Ajustando permissões..."
             find ${TARGET_DIR} -type f -exec chmod 644 {} \;
             find ${TARGET_DIR} -type d -exec chmod 755 {} \;
 
-            # Limpeza
+            # Limpeza do arquivo temporário
             echo "🧽 Removendo arquivos temporários..."
             rm -f /tmp/site.tar.gz
 
             # Mantém apenas os 5 backups mais recentes
             echo "🗂️ Limpando backups antigos..."
-            ls -dt /home/neylon/contramare_com_br_backup_* 2>/dev/null | tail -n +6 | xargs rm -rf
+            ls -dt ${BACKUP_BASE_DIR}/backup_* 2>/dev/null | tail -n +6 | xargs rm -rf
 
             echo "✅ Deploy concluído com sucesso!"
             echo "📊 Conteúdo atual:"
