@@ -74,10 +74,13 @@
    ================================================ */
 .card-image-wrapper {
   overflow: hidden;
+  /* aspect-ratio garante proporção consistente; height fixo como fallback */
+  aspect-ratio: 16 / 9;
   height: 200px;
   flex-shrink: 0;
   width: 100%;
   position: relative;
+  background-color: #f0f2f5;
 }
 
 .blog-thumb {
