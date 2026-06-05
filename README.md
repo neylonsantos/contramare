@@ -57,14 +57,17 @@ O **Contramaré** é mais que um blog — é um ponto de resistência intelectua
 - **Interface limpa** focada na experiência de leitura
 - **Navegação intuitiva** com sistema de categorias ativas
 - **Preload de recursos críticos** para performance visual
+- **Share buttons** nativos (X, WhatsApp, LinkedIn, copiar link)
 
 ### 🔍 SEO e Performance Avançados
 - **SEO técnico completo** com jekyll-seo-tag + meta tags customizadas
-- **Schema.org markup avançado** (Organization, WebSite, SearchAction, Article)
+- **Schema.org markup avançado** (Organization, WebSite, BlogPosting, BreadcrumbList, FAQPage)
 - **Meta tags geográficas** para targeting brasileiro
 - **Rich snippets otimizados** para redes sociais
-- **Sitemap automático**, feed RSS e redirects
-- **Compressão SASS** e otimização de imagens automática
+- **Sitemap customizado** com priority e changefreq, feed RSS e redirects
+- **Web App Manifest** para suporte PWA
+- **Analytics carregados apenas em produção** (GA4 + Clarity)
+- **Compressão SASS** e otimização automática de imagens
 
 ---
 
@@ -72,7 +75,7 @@ O **Contramaré** é mais que um blog — é um ponto de resistência intelectua
 
 ### Core
 - **Jekyll 4.4.1** - Gerador de sites estáticos
-- **Ruby** - Linguagem base
+- **Ruby 4.0.5** - Linguagem base
 - **Liquid** - Template engine
 - **Kramdown** - Processador Markdown com GFM
 - **Rouge** - Syntax highlighting
@@ -87,10 +90,11 @@ O **Contramaré** é mais que um blog — é um ponto de resistência intelectua
 
 ### Plugins Jekyll
 - **jekyll-seo-tag** - SEO automático avançado
-- **jekyll-sitemap** - Geração automática de sitemap
 - **jekyll-feed** - Feed RSS otimizado
 - **jekyll-redirect-from** - Sistema de redirecionamentos
 - **jekyll-compress-images** - Otimização automática de imagens (fork customizado)
+
+> ℹ️ O sitemap é gerado por um arquivo `sitemap.xml` customizado (não usa `jekyll-sitemap`), permitindo controle total de `priority` e `changefreq` por página.
 
 ### Plugins Customizados
 - **feature_filter.rb** - Sistema modular com Jekyll Hooks (10-20x mais rápido)
@@ -107,8 +111,8 @@ O **Contramaré** é mais que um blog — é um ponto de resistência intelectua
 
 ### Pré-requisitos
 ```bash
-# Ruby (versão 2.7 ou superior)
-ruby --version
+# Ruby 4.0.5 (recomendado via asdf)
+ruby --version  # deve retornar 4.0.5
 
 # Bundler
 gem install bundler
@@ -146,8 +150,8 @@ http://localhost:4000
 # Desenvolvimento com drafts
 bundle exec jekyll serve --drafts
 
-# Build para produção
-bundle exec jekyll build
+# Build para produção (obrigatório usar JEKYLL_ENV)
+JEKYLL_ENV=production bundle exec jekyll build
 
 # Build com perfil de performance
 bundle exec jekyll build --profile
@@ -155,6 +159,8 @@ bundle exec jekyll build --profile
 # Limpeza de cache
 bundle exec jekyll clean
 ```
+
+> ⚠️ Sempre use `JEKYLL_ENV=production` no build final. Sem ele, analytics (GA4 e Clarity) não são carregados no HTML gerado.
 
 ---
 
@@ -165,13 +171,16 @@ contramare/
 ├── 📄 Configuração
 │   ├── _config.yml              # Configurações principais
 │   ├── Gemfile                  # Dependências Ruby
-│   └── robots.txt               # Diretivas para crawlers
+│   ├── robots.txt               # Diretivas para crawlers (inclui bloqueio de bots de IA)
+│   └── sitemap.xml              # Sitemap customizado com priority e changefreq
 │
 ├── 🏗️ Estrutura Jekyll
 │   ├── _includes/               # Componentes reutilizáveis
-│   │   ├── head.html           # Meta tags e SEO
-│   │   ├── header.html         # Navegação principal
+│   │   ├── head.html           # Meta tags, SEO, preload e structured data
+│   │   ├── header.html         # Navegação principal + skip link de acessibilidade
 │   │   ├── footer.html         # Rodapé
+│   │   ├── analytics.html      # GA4 + Clarity (carregado apenas em produção)
+│   │   ├── share_buttons.html  # Botões de compartilhamento (X, WhatsApp, LinkedIn)
 │   │   ├── apresentation.html  # Apresentação da home
 │   │   ├── last_publications.html  # Posts recentes
 │   │   ├── post_details.html   # Detalhes do post
@@ -207,16 +216,20 @@ contramare/
 │   │   ├── contact.js          # Página de contato
 │   │   └── post-enhancements.js # Melhorias para posts
 │   │
+│   ├── assets/manifest.webmanifest  # Web App Manifest (PWA)
 │   ├── assets/base/             # Logos e imagens base
 │   └── assets/uploads/          # Upload de conteúdo
 │
 ├── 📄 Páginas
 │   ├── pages/                   # Páginas estáticas
-│   │   ├── about.html          # Sobre/Manifesto
+│   │   ├── about.html          # Sobre/Manifesto (com FAQPage schema e posts recentes)
 │   │   ├── blog.html           # Lista de posts
 │   │   └── contact.html        # Contato
 │   ├── index.html              # Página inicial
 │   └── 404.html                # Página de erro
+│
+├── 🗂️ Cache e Build
+│   └── _compress_images_cache.yml  # Cache do plugin de imagens (deve ser commitado)
 │
 └── 📚 Documentação
     └── README.md               # Este arquivo
@@ -344,12 +357,13 @@ custom_js:
 ### 🛡️ Otimizações de Segurança e Performance
 
 - 🚀 **Compressão SASS** automática (`style: compressed`)
-- 🖼️ **Otimização de imagens** automática via plugin customizado
+- 🖼️ **Otimização de imagens** automática via plugin (PNG, JPG, GIF)
 - 📱 **Recursos críticos preloadados** para LCP otimizado
 - 🔒 **Headers de segurança** (X-Frame-Options, X-XSS-Protection, etc.)
 - ⚡ **CDN Bootstrap 5.3.6** com integridade verificada
 - 🎯 **JavaScript com defer** para non-blocking loading
-- 📊 **Analytics otimizados** (GA4 + Clarity) com carregamento assíncrono
+- 📊 **Analytics carregados apenas em produção** (GA4 + Clarity via `analytics.html`)
+- 📲 **Web App Manifest** para instalação PWA
 
 ### 🔧 Configurações de Build Otimizadas
 
@@ -365,9 +379,10 @@ webrick:
     X-Content-Type-Options: nosniff
     X-XSS-Protection: 1; mode=block
 
-# Otimização de imagens
+# Otimização de imagens (apenas PNG, JPG, GIF — svgo desabilitado)
 compress_images:
-  images_path: "assets/**/*.{gif,png,jpg,jpeg,svg}"
+  images_path: "assets/**/*.{gif,png,jpg,jpeg}"
+  svgo: false
 ```
 
 ---
@@ -378,16 +393,21 @@ compress_images:
 
 #### Estrutura Base
 ✅ **jekyll-seo-tag** + meta tags customizadas avançadas
-✅ **Schema.org markup completo** (Organization, WebSite, SearchAction, Article)
+✅ **Schema.org markup completo** (Organization, WebSite, BlogPosting, BreadcrumbList, FAQPage)
 ✅ **Meta tags geográficas** para targeting brasileiro (geo.region, geo.country)
 ✅ **Robots e Googlebot** com diretrizes específicas
 ✅ **Canonical URLs** automáticos
-✅ **Sitemap.xml** e **Feed RSS** otimizados
+✅ **Sitemap customizado** com `priority` e `changefreq` por página
+✅ **Feed RSS** otimizado
+✅ **Hreflang** pt-BR e x-default
+✅ **Web App Manifest** para PWA
 
 #### Rich Snippets e Social Media
 ✅ **Open Graph** e **Twitter Cards** otimizados
-✅ **Article markup** com author, published_time, section e tags
-✅ **Structured data** para SearchAction (busca no site)
+✅ **Article markup** com author, published_time, modified_time, section e tags
+✅ **BlogPosting schema** com ImageObject (1200x630px) em cada post
+✅ **BreadcrumbList** automático nos posts
+✅ **FAQPage schema** na página Sobre
 ✅ **Publisher information** completa
 
 ### 📊 Dados Estruturados Avançados
@@ -412,43 +432,43 @@ author:
   social:
     x: "https://x.com/neylonxyz"
     github: "https://github.com/neylonssantos"
-
-# Configurações por categoria
-categories:
-  Reflexões:
-    description: "Artigos provocativos que desafiam o senso comum."
-    color: "#2c3e50"
 ```
 
 #### Schema.org Automático implementado:
 
 ```javascript
-// WebSite + SearchAction
+// WebSite + SearchAction (redireciona para Google)
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "url": "https://contramare.com.br",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://contramare.com.br/search?q={search_term_string}"
+    "target": "https://www.google.com/search?q=site:contramare.com.br+{search_term_string}"
   }
 }
 ```
 
-### 📈 Analytics Duplo
+### 📈 Analytics (produção apenas)
+
+Os scripts de analytics ficam isolados em `_includes/analytics.html` e são injetados no `<body>` **somente quando `JEKYLL_ENV=production`**, garantindo que builds locais não contaminem os dados.
 
 #### Google Analytics 4
 ```javascript
-// Implementação otimizada GA4
 gtag('config', 'G-RQ21K77JYG');
 ```
 
 #### Microsoft Clarity
 ```javascript
-// Heatmaps e gravações de sessão
-(function(c,l,a,r,i,t,y){
-    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-    // ID: spvfnlcybw
+// Heatmaps e gravações de sessão — ID: spvfnlcybw
+```
+
+### 🤖 Proteção contra Bots de IA
+
+O `robots.txt` bloqueia os principais crawlers de IA para proteger o conteúdo:
+
+```
+Disallow: / (GPTBot, CCBot, anthropic-ai, Google-Extended, AdsBot-Google)
 ```
 
 ### 📝 Template SEO Completo para Posts
@@ -513,7 +533,7 @@ _posts/
 
 assets/uploads/posts/
 ├── YYYY-MM-DD-titulo-do-post/
-│   ├── featured.jpg               # Imagem destacada (1200x630px)
+│   ├── featured.jpg               # Imagem destacada (1200x630px, proporção 16:9)
 │   └── [outras-imagens.jpg]       # Imagens do conteúdo
 └── ...
 ```
@@ -579,7 +599,7 @@ category_feature_map:
 #### Template com Checklist Automático:
 - ✅ **SEO otimizado** - título, descrição, tags
 - ✅ **Estrutura clara** - H2/H3, parágrafos curtos
-- ✅ **Imagens otimizadas** - 1200x630px para social
+- ✅ **Imagens otimizadas** - 1200x630px para social (proporção 16:9)
 - ✅ **Links internos** - conexões entre posts
 - ✅ **Call-to-action** - engajamento natural
 - ✅ **Revisão completa** - ortografia e fluidez
@@ -599,11 +619,19 @@ google_analytics: G-RQ21K77JYG
 ```
 
 ### Deploy Automático
-O site é **automaticamente publicado** a cada push:
+
+O workflow `.github/workflows/build-deploy-jekyll.yml` é acionado a cada push na `master`:
+
+1. Setup Ruby 4.0.5
+2. `bundle install`
+3. `JEKYLL_ENV=production bundle exec jekyll build`
+4. Compacta `_site/` em `site.tar.gz`
+5. Transfere via SCP para o servidor
+6. Extrai, ajusta permissões e mantém os 5 backups mais recentes
 
 ```bash
 git add .
-git commit -m "Novo post: Título do Post"
+git commit -m "feat: novo post"
 git push origin master
 ```
 
@@ -615,7 +643,7 @@ git push origin master
 
 1. **Fork** o repositório
 2. **Crie** uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
-3. **Commit** suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
+3. **Commit** suas mudanças (`git commit -m 'feat: adiciona nova funcionalidade'`)
 4. **Push** para a branch (`git push origin feature/nova-funcionalidade`)
 5. **Abra** um Pull Request
 
