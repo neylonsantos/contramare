@@ -1,0 +1,34 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>{{ site.url }}/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  {% for page in site.pages %}
+    {% if page.sitemap != false and page.url != '/404.html' and page.url != '/sitemap.xml' and page.url != '/feed.xml' and page.url != '/robots.txt' %}
+    <url>
+      <loc>{{ site.url }}{{ page.url }}</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+    </url>
+    {% endif %}
+  {% endfor %}
+
+  {% assign active_posts = site.data.filtered_posts | sort: 'date' | reverse %}
+  {% for post in active_posts %}
+  {% assign modified = post.last_modified_at | default: post.date %}
+  <url>
+    <loc>{{ site.url }}{{ post.url }}</loc>
+    <lastmod>{{ modified | date_to_xmlschema }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  {% endfor %}
+
+</urlset>
