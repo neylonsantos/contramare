@@ -5,13 +5,14 @@ layout: default
 {% assign post_category = page.categories | first %}
 {% assign category_active = post_category | category_is_active %}
 {% if category_active %}
-  <main class="main container" role="main">
+  {% assign modified = page.last_modified_at | default: page.date %}
+  <main id="main-content" class="main container" role="main">
     <article itemscope itemtype="https://schema.org/BlogPosting">
 
       <!-- Microdata para SEO -->
       <meta itemprop="author" content="{{ site.author }}">
       <meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">
-      <meta itemprop="dateModified" content="{{ page.date | date_to_xmlschema }}">
+      <meta itemprop="dateModified" content="{{ modified | date_to_xmlschema }}">
       <meta itemprop="publisher" content="{{ site.title }}">
       <meta itemprop="mainEntityOfPage" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
       {% if page.image %}
@@ -29,7 +30,12 @@ layout: default
         },
         "headline": "{{ page.title | strip_html | escape }}",
         "description": "{{ page.description | default: site.description | strip_html | escape }}",
-        "image": ["{{ page.image | default: site.seo.default_image | prepend: site.baseurl | prepend: site.url }}"],
+        "image": {
+          "@type": "ImageObject",
+          "url": "{{ page.image | default: site.seo.default_image | prepend: site.baseurl | prepend: site.url }}",
+          "width": 1200,
+          "height": 630
+        },
         "author": {
           "@type": "Person",
           "name": "{{ site.author }}"
@@ -39,11 +45,13 @@ layout: default
           "name": "{{ site.title }}",
           "logo": {
             "@type": "ImageObject",
-            "url": "{{ '/assets/base/contramare-icon.png' | prepend: site.baseurl | prepend: site.url }}"
+            "url": "{{ '/assets/base/contramare-icon.png' | prepend: site.baseurl | prepend: site.url }}",
+            "width": 512,
+            "height": 512
           }
         },
         "datePublished": "{{ page.date | date_to_xmlschema }}",
-        "dateModified": "{{ page.date | date_to_xmlschema }}"
+        "dateModified": "{{ modified | date_to_xmlschema }}"
       }
       </script>
       <!-- fim JSON-LD -->
@@ -53,6 +61,8 @@ layout: default
       <div class="post-content" itemprop="articleBody">
         {{ content }}
       </div>
+
+      {% include share_buttons.html %}
 
       <!-- Breadcrumb schema for better navigation -->
       <nav aria-label="breadcrumb" style="margin-top: 2rem;">

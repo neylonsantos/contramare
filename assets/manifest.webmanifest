@@ -1,0 +1,22 @@
+{
+  "name": "Contramaré",
+  "short_name": "Contramaré",
+  "description": "Reflexões provocativas que desafiam o senso comum e estimulam o pensamento crítico.",
+  "start_url": "/",
+  "display": "minimal-ui",
+  "background_color": "#fafbfc",
+  "theme_color": "#2c3e50",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/assets/base/contramare-icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/base/contramare-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

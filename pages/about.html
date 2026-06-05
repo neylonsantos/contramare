@@ -22,9 +22,50 @@ custom_css:
       "logo": "{{ site.vars.logo | prepend: site.url }}"
     }
   }
-  </script>
+</script>
 
-<main class="about-container">
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "O que é o Contramaré?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Contramaré é um blog de reflexões provocativas que desafiam o senso comum, abordando temas como maturidade emocional, desenvolvimento pessoal e pensamento crítico. Nasceu da inconformidade com comportamentos normalizados e frases aceitas sem questionamento."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quem escreve no Contramaré?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Os artigos são escritos por Neylon Santos, engenheiro de software e escritor interessado em comportamento humano, crescimento pessoal e pensamento crítico."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sobre quais temas o Contramaré escreve?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "O Contramaré aborda maturidade emocional, preguiça intelectual, responsabilidade pessoal, desenvolvimento pessoal e a tendência de seguir o fluxo sem questionar. O objetivo é provocar reflexão crítica e desconforto fértil."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Como posso entrar em contato com o Contramaré?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Você pode entrar em contato através do email contato@contramare.com.br ou pela página de contato em https://contramare.com.br/contact/."
+        }
+      }
+    ]
+  }
+</script>
+
+<main id="main-content" class="about-container">
   <!-- Article Header -->
   <header class="article-header">
     <div class="header-meta">
@@ -134,4 +175,22 @@ custom_css:
       </p>
     </div>
   </article>
+
+  {% assign recent_posts = site.data.filtered_posts | sort: 'date' | reverse | slice: 0, 3 %}
+  {% if recent_posts.size > 0 %}
+  <section class="about-recent-posts mt-5 pt-3">
+    <h2>Últimas reflexões</h2>
+    <ul class="about-posts-list">
+      {% for post in recent_posts %}
+      <li>
+        <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d %b %Y" }}</time>
+      </li>
+      {% endfor %}
+    </ul>
+    {% if site.features.blog_page %}
+    <a href="{{ site.baseurl }}/blog/" class="btn-read-more mt-3">Ver todos os artigos</a>
+    {% endif %}
+  </section>
+  {% endif %}
 </main>

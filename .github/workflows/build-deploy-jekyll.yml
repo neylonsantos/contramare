@@ -17,7 +17,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.4.8'
+          ruby-version: '4.0.5'
           bundler-cache: true
 
       # Validação das dependências
@@ -31,7 +31,7 @@ jobs:
 
       - name: Inicia o Jekyll Build
         run: |
-          bundle exec jekyll build
+          JEKYLL_ENV=production bundle exec jekyll build
           # Verifica se o build foi bem-sucedido
           if [ ! -d "_site" ] || [ -z "$(ls -A _site)" ]; then
             echo "❌ Build falhou ou diretório _site está vazio!"

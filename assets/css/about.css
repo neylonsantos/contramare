@@ -311,3 +311,64 @@
     border: 2px solid #2789ce;
   }
 }
+
+/* ================================================
+   RECENT POSTS ON ABOUT PAGE
+   ================================================ */
+.about-recent-posts h2 {
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.about-posts-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.about-posts-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.about-posts-list li:last-child {
+  border-bottom: none;
+}
+
+.about-posts-list a {
+  color: #2c3e50;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.about-posts-list a:hover {
+  text-decoration: underline;
+}
+
+.about-posts-list time {
+  font-size: 0.8rem;
+  color: #6c757d;
+  white-space: nowrap;
+}
+
+.btn-read-more {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid #2c3e50;
+  color: #2c3e50;
+  text-decoration: none;
+  font-size: 0.875rem;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-read-more:hover {
+  background: #2c3e50;
+  color: #fff;
+}
