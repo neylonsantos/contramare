@@ -207,11 +207,13 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  addressable (>= 2.9.0)
   jekyll (~> 4.4)
   jekyll-compress-images!
   jekyll-feed (~> 0.16)
   jekyll-redirect-from
   jekyll-seo-tag
+  rexml (>= 3.4.2)
   webrick
 
 CHECKSUMS

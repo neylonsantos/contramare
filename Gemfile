@@ -10,3 +10,5 @@ group :jekyll_plugins do
 end
 
 gem 'webrick'
+gem "addressable", ">= 2.9.0"
+gem "rexml", ">= 3.4.2"
